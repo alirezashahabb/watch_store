@@ -1,3 +1,8 @@
+import 'package:clock_shop/gen/assets.gen.dart';
+import 'package:clock_shop/res/dimends.dart';
+import 'package:clock_shop/res/extions.dart';
+import 'package:clock_shop/res/string.dart';
+import 'package:clock_shop/widget/app_text_feild.dart';
 import 'package:flutter/material.dart';
 
 class SendOtpScreen extends StatelessWidget {
@@ -6,6 +11,19 @@ class SendOtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container();
+    final TextEditingController controller = TextEditingController();
+    return Scaffold(
+      body: Column(
+        children: [
+          Assets.png.mainLogo.image(),
+          AppDimes.large.hight,
+          MyAppTextFelid(
+            label: AppStrings.enterYourNumber,
+            hint: AppStrings.hintPhoneNumber,
+            controller: controller,
+          )
+        ],
+      ),
+    );
   }
 }
