@@ -13,16 +13,21 @@ class SendOtpScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     final TextEditingController controller = TextEditingController();
     return Scaffold(
-      body: Column(
-        children: [
-          Assets.png.mainLogo.image(),
-          AppDimes.large.hight,
-          MyAppTextFelid(
-            label: AppStrings.enterYourNumber,
-            hint: AppStrings.hintPhoneNumber,
-            controller: controller,
-          )
-        ],
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Assets.png.mainLogo.image(),
+            AppDimes.large.hight,
+            MyAppTextFelid(
+              label: AppStrings.enterYourNumber,
+              hint: AppStrings.hintPhoneNumber,
+              controller: controller,
+            )
+          ],
+        ),
       ),
     );
   }

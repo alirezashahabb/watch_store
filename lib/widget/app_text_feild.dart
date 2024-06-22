@@ -22,34 +22,32 @@ class MyAppTextFelid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(
-          AppDimes.medium,
-        ),
-        child: SizedBox(
-          width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(label),
-              AppDimes.medium.hight,
-              SizedBox(
-                height: size.height * .07,
-                width: size.height * .75,
-                child: TextField(
-                  controller: controller,
-                  textAlign: textAlign,
-                  keyboardType: type,
-                  decoration: InputDecoration(
-                    hintText: hint,
-                    prefix: icon,
-                  ),
+    return Padding(
+      padding: const EdgeInsets.all(
+        AppDimes.medium,
+      ),
+      child: SizedBox(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(label),
+            AppDimes.medium.hight,
+            SizedBox(
+              height: size.height * .07,
+              width: size.height * .75,
+              child: TextField(
+                controller: controller,
+                textAlign: textAlign,
+                keyboardType: type,
+                decoration: InputDecoration(
+                  hintText: hint,
+                  prefix: icon,
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
     );
