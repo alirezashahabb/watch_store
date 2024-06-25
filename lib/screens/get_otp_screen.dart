@@ -1,3 +1,4 @@
+import 'package:clock_shop/components/text_style.dart';
 import 'package:clock_shop/gen/assets.gen.dart';
 import 'package:clock_shop/res/dimends.dart';
 import 'package:clock_shop/res/extions.dart';
@@ -26,9 +27,13 @@ class GetOtpScreen extends StatelessWidget {
               Text(
                 AppStrings.otpCodeSendFor
                     .replaceAll(AppStrings.replace, '09139936173'),
+                style: AppTextStyles.title,
               ),
               AppDimes.medium.hight,
-              const Text(AppStrings.wrongNumberEditNumber),
+              const Text(
+                AppStrings.wrongNumberEditNumber,
+                style: AppTextStyles.title,
+              ),
               AppDimes.large.hight,
               MyAppTextFelid(
                 label: AppStrings.enterVerificationCode,
