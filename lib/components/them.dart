@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 ThemeData lightTheme() {
   return ThemeData(
+    useMaterial3: false,
     brightness: Brightness.light,
     iconTheme: const IconThemeData(color: Colors.black),
     primaryColor: AppColors.primaryColor,
