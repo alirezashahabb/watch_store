@@ -55,9 +55,9 @@ class MyAppTextFelid extends StatelessWidget {
               textAlign: textAlign,
               keyboardType: type,
               decoration: InputDecoration(
-                hintStyle: AppTextStyles.oldPriceStyle,
+                hintStyle: AppTextStyles.hint,
                 hintText: hint,
-                prefix: icon,
+                suffixIcon: icon,
               ),
             ),
           ),

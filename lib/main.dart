@@ -1,5 +1,5 @@
 import 'package:clock_shop/components/them.dart';
-import 'package:clock_shop/screens/get_otp_screen.dart';
+import 'package:clock_shop/screens/register_otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
         Locale('fa'), // Farsi
       ],
       theme: lightTheme(),
-      home: const GetOtpScreen(),
+      home: const RegisterOtp(),
     );
   }
 }

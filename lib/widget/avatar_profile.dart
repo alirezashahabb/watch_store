@@ -5,24 +5,24 @@ import 'package:clock_shop/res/extions.dart';
 import 'package:flutter/material.dart';
 
 class AvatarImage extends StatelessWidget {
-  final String title;
+  final String titleAvatar;
   const AvatarImage({
     super.key,
-    required this.title,
+    required this.titleAvatar,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Assets.png.avatar.image(
-          width: 100,
-          height: 100,
+        ClipRRect(
+          borderRadius: BorderRadius.circular(100),
+          child: Assets.png.avatar.image(),
         ),
         AppDimes.medium.hight,
         Text(
-          title,
-          style: AppTextStyles.title,
+          titleAvatar,
+          style: AppTextStyles.avatarText,
         ),
       ],
     );
