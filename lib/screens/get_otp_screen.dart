@@ -32,7 +32,7 @@ class GetOtpScreen extends StatelessWidget {
               AppDimes.medium.hight,
               const Text(
                 AppStrings.wrongNumberEditNumber,
-                style: AppTextStyles.title,
+                style: AppTextStyles.primaryThemeTextStyle,
               ),
               AppDimes.large.hight,
               MyAppTextFelid(
