@@ -40,6 +40,7 @@ class GetOtpScreen extends StatelessWidget {
                 hint: AppStrings.hintVerificationCode,
                 caption: '2:30',
                 controller: controller,
+                type: TextInputType.number,
               ),
               MainBottom(
                 onPressed: () {},

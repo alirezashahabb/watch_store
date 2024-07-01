@@ -16,27 +16,7 @@ class RegisterOtp extends StatelessWidget {
     final TextEditingController controller = TextEditingController();
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size(size.width, size.height),
-          child: Padding(
-            padding: const EdgeInsets.all(AppDimes.medium),
-            child: SizedBox(
-              width: size.width,
-              height: size.height * 0.1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppStrings.register,
-                    style: AppTextStyles.title.copyWith(
-                      fontSize: 17,
-                    ),
-                  ),
-                  SvgPicture.asset(Assets.svg.back),
-                ],
-              ),
-            ),
-          )),
+      appBar: RegitrationAppBar(size: size),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
@@ -80,4 +60,42 @@ class RegisterOtp extends StatelessWidget {
       ),
     );
   }
+}
+
+class RegitrationAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const RegitrationAppBar({
+    super.key,
+    required this.size,
+  });
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return PreferredSize(
+        preferredSize: Size(size.width, size.height),
+        child: Padding(
+          padding: const EdgeInsets.all(AppDimes.medium),
+          child: SizedBox(
+            width: size.width,
+            height: size.height * 0.1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  AppStrings.register,
+                  style: AppTextStyles.title.copyWith(
+                    fontSize: 17,
+                  ),
+                ),
+                SvgPicture.asset(Assets.svg.back),
+              ],
+            ),
+          ),
+        ));
+  }
+
+  @override
+  // TODO: implement preferredSize
+  Size get preferredSize => Size.fromHeight(size.height * 0.1);
 }

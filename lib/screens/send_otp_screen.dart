@@ -26,6 +26,7 @@ class SendOtpScreen extends StatelessWidget {
               MyAppTextFelid(
                 label: AppStrings.enterYourNumber,
                 hint: AppStrings.hintPhoneNumber,
+                type: TextInputType.number,
                 controller: controller,
               ),
               MainBottom(
