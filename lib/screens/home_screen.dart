@@ -1,5 +1,9 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:clock_shop/gen/assets.gen.dart';
+import 'package:clock_shop/res/color.dart';
 import 'package:clock_shop/res/dimends.dart';
+import 'package:clock_shop/res/string.dart';
+import 'package:clock_shop/widget/category_items.dart';
 import 'package:clock_shop/widget/search_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +21,37 @@ class HomeScreen extends StatelessWidget {
               onTap: () {},
             ),
             // AppSlider
-            const AppSlider()
+            const AppSlider(),
+            // Category Section
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CategoryItems(
+                  categoryName: AppStrings.classic,
+                  imagePath: Assets.svg.clasic,
+                  linerColors: AppColors.catClasicColors,
+                  onTap: () {},
+                ),
+                CategoryItems(
+                  categoryName: AppStrings.smart,
+                  imagePath: Assets.svg.smart,
+                  linerColors: AppColors.catSmartColors,
+                  onTap: () {},
+                ),
+                CategoryItems(
+                  categoryName: AppStrings.digital,
+                  imagePath: Assets.svg.digital,
+                  linerColors: AppColors.catDigitalColors,
+                  onTap: () {},
+                ),
+                CategoryItems(
+                  categoryName: AppStrings.desktop,
+                  imagePath: Assets.svg.desktop,
+                  linerColors: AppColors.catDesktopColors,
+                  onTap: () {},
+                ),
+              ],
+            ),
           ],
         ),
       ),
