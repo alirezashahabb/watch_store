@@ -2,9 +2,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:clock_shop/gen/assets.gen.dart';
 import 'package:clock_shop/res/color.dart';
 import 'package:clock_shop/res/dimends.dart';
+import 'package:clock_shop/res/extions.dart';
 import 'package:clock_shop/res/string.dart';
 import 'package:clock_shop/widget/category_items.dart';
 import 'package:clock_shop/widget/search_bar.dart';
+import 'package:clock_shop/widget/vertical_text.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -14,45 +16,81 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            // search bar
-            SearchBtn(
-              onTap: () {},
-            ),
-            // AppSlider
-            const AppSlider(),
-            // Category Section
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CategoryItems(
-                  categoryName: AppStrings.classic,
-                  imagePath: Assets.svg.clasic,
-                  linerColors: AppColors.catClasicColors,
-                  onTap: () {},
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              // search bar
+              SearchBtn(
+                onTap: () {},
+              ),
+              // AppSlider
+              const AppSlider(),
+              // Category Section
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CategoryItems(
+                    categoryName: AppStrings.classic,
+                    imagePath: Assets.svg.clasic,
+                    linerColors: AppColors.catClasicColors,
+                    onTap: () {},
+                  ),
+                  CategoryItems(
+                    categoryName: AppStrings.smart,
+                    imagePath: Assets.svg.smart,
+                    linerColors: AppColors.catSmartColors,
+                    onTap: () {},
+                  ),
+                  CategoryItems(
+                    categoryName: AppStrings.digital,
+                    imagePath: Assets.svg.digital,
+                    linerColors: AppColors.catDigitalColors,
+                    onTap: () {},
+                  ),
+                  CategoryItems(
+                    categoryName: AppStrings.desktop,
+                    imagePath: Assets.svg.desktop,
+                    linerColors: AppColors.catDesktopColors,
+                    onTap: () {},
+                  ),
+                ],
+              ),
+              AppDimes.large.hight,
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                child: Row(
+                  children: [
+                    const Padding(
+                      padding: EdgeInsets.only(right: 8),
+                      child: VerticalText(),
+                    ),
+                    SizedBox(
+                      height: 300,
+                      child: ListView.builder(
+                        physics: const ClampingScrollPhysics(),
+                        itemCount: 8,
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Container(
+                            margin: const EdgeInsets.all(AppDimes.medium),
+                            height: 298,
+                            width: 200,
+                            decoration: const BoxDecoration(
+                                gradient: LinearGradient(
+                              colors: AppColors.productBgGradiant,
+                            )),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                CategoryItems(
-                  categoryName: AppStrings.smart,
-                  imagePath: Assets.svg.smart,
-                  linerColors: AppColors.catSmartColors,
-                  onTap: () {},
-                ),
-                CategoryItems(
-                  categoryName: AppStrings.digital,
-                  imagePath: Assets.svg.digital,
-                  linerColors: AppColors.catDigitalColors,
-                  onTap: () {},
-                ),
-                CategoryItems(
-                  categoryName: AppStrings.desktop,
-                  imagePath: Assets.svg.desktop,
-                  linerColors: AppColors.catDesktopColors,
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );

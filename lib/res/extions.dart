@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-extension SizeBoxExciton on num {
+extension SizeBoxExciton on double {
   SizedBox get hight => SizedBox(
         height: toDouble(),
       );
