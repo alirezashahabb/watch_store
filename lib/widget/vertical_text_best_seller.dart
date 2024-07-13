@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 /// this is Vertical Text for Best offers Slider
-class VerticalText extends StatelessWidget {
-  const VerticalText({
+class VerticalTextBestSeller extends StatelessWidget {
+  const VerticalTextBestSeller({
     super.key,
   });
 
@@ -24,9 +24,9 @@ class VerticalText extends StatelessWidget {
               SvgPicture.asset(Assets.svg.back)
             ],
           ),
-          Text(
+          const Text(
             'پیشنهاد شگفت انگیز',
-            style: AppTextStyles.title.copyWith(fontSize: 18),
+            style: AppTextStyles.amazingStyle,
           ),
         ],
       ),

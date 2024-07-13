@@ -5,8 +5,9 @@ import 'package:clock_shop/res/dimends.dart';
 import 'package:clock_shop/res/extions.dart';
 import 'package:clock_shop/res/string.dart';
 import 'package:clock_shop/widget/category_items.dart';
+import 'package:clock_shop/widget/product_item.dart';
 import 'package:clock_shop/widget/search_bar.dart';
-import 'package:clock_shop/widget/vertical_text.dart';
+import 'package:clock_shop/widget/vertical_text_best_seller.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -64,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     const Padding(
                       padding: EdgeInsets.only(right: 8),
-                      child: VerticalText(),
+                      child: VerticalTextBestSeller(),
                     ),
                     SizedBox(
                       height: 300,
@@ -74,14 +75,9 @@ class HomeScreen extends StatelessWidget {
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
-                          return Container(
-                            margin: const EdgeInsets.all(AppDimes.medium),
-                            height: 298,
-                            width: 200,
-                            decoration: const BoxDecoration(
-                                gradient: LinearGradient(
-                              colors: AppColors.productBgGradiant,
-                            )),
+                          return const ProductItem(
+                            price: 12000,
+                            productName: 'ساعت نیوفیس',
                           );
                         },
                       ),
