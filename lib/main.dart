@@ -1,6 +1,6 @@
 import 'package:clock_shop/components/them.dart';
 import 'package:clock_shop/route/name.dart';
-import 'package:clock_shop/route/routes.dart';
+import 'package:clock_shop/screens/product_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
       ],
       theme: lightTheme(),
       initialRoute: ScreenNames.root,
-      routes: routes,
+      // routes: routes,
+      home: const ProductListScreen(),
     );
   }
 }
