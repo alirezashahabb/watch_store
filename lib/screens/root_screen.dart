@@ -4,6 +4,7 @@ import 'package:clock_shop/res/color.dart';
 import 'package:clock_shop/screens/basket_screen.dart';
 import 'package:clock_shop/screens/home_screen.dart';
 import 'package:clock_shop/screens/profile_screen.dart';
+import 'package:clock_shop/widget/custom_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -48,15 +49,13 @@ class _RootScreenState extends State<RootScreen> {
                 color: AppColors.btmNavInActiveItem,
               ),
             ),
-            BottomNavigationBarItem(
-              activeIcon: SvgPicture.asset(
-                Assets.svg.cart,
-                color: AppColors.btmNavActiveItem,
+            const BottomNavigationBarItem(
+              activeIcon: CartBadge(
+                count: 2,
               ),
               label: 'فروشگاه',
-              icon: SvgPicture.asset(
-                Assets.svg.cart,
-                color: AppColors.btmNavInActiveItem,
+              icon: CartBadge(
+                count: 3,
               ),
             ),
             BottomNavigationBarItem(
