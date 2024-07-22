@@ -7,8 +7,8 @@ import 'package:clock_shop/widget/app_text_feild.dart';
 import 'package:clock_shop/widget/main_bottom.dart';
 import 'package:flutter/material.dart';
 
-class GetOtpScreen extends StatelessWidget {
-  const GetOtpScreen({super.key});
+class VerifyOtpScreen extends StatelessWidget {
+  const VerifyOtpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

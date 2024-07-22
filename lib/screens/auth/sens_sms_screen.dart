@@ -6,8 +6,8 @@ import 'package:clock_shop/widget/app_text_feild.dart';
 import 'package:clock_shop/widget/main_bottom.dart';
 import 'package:flutter/material.dart';
 
-class SendOtpScreen extends StatelessWidget {
-  const SendOtpScreen({super.key});
+class SendSmsScreen extends StatelessWidget {
+  const SendSmsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
