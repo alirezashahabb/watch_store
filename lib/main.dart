@@ -1,7 +1,9 @@
 import 'package:clock_shop/components/them.dart';
-import 'package:clock_shop/route/name.dart';
+import 'package:clock_shop/screens/auth/cubit/auth_cubit.dart';
 import 'package:clock_shop/screens/auth/sens_sms_screen.dart';
+import 'package:clock_shop/screens/root_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
@@ -14,21 +16,34 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'ClockShop',
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('fa'), // Farsi
-      ],
-      theme: lightTheme(),
-      initialRoute: ScreenNames.root,
-      // routes: routes,
-      home: const SendSmsScreen(),
+    return BlocProvider(
+      create: (context) => AuthCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'ClockShop',
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('fa'), // Farsi
+        ],
+        theme: lightTheme(),
+        // initialRoute: ScreenNames.root,
+        // routes: routes,
+        home: BlocBuilder<AuthCubit, AuthState>(
+          builder: (context, state) {
+            if (state is AuthLoggedInState) {
+              return const RootScreen();
+            } else if (state is AuthLogeOutState) {
+              return const SendSmsScreen();
+            } else {
+              return const SendSmsScreen();
+            }
+          },
+        ),
+      ),
     );
   }
 }

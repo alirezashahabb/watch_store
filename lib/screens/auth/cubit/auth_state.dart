@@ -9,7 +9,11 @@ final class AuthLoadingState extends AuthState {}
 
 final class AuthErrorState extends AuthState {}
 
-final class AuthSuccessesState extends AuthState {}
+final class AuthSuccessesState extends AuthState {
+  final String number;
+
+  AuthSuccessesState({required this.number});
+}
 
 // this state for check and verify otpCode
 final class AuthVerifyState extends AuthState {}

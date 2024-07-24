@@ -8,10 +8,13 @@ import 'package:clock_shop/widget/main_bottom.dart';
 import 'package:flutter/material.dart';
 
 class VerifyOtpScreen extends StatelessWidget {
-  const VerifyOtpScreen({super.key});
+  final String number;
+  const VerifyOtpScreen({super.key, required this.number});
 
   @override
   Widget build(BuildContext context) {
+    // get phone number to previous page
+
     final TextEditingController controller = TextEditingController();
     return Scaffold(
       body: SizedBox(
@@ -26,7 +29,7 @@ class VerifyOtpScreen extends StatelessWidget {
               AppDimes.medium.hight,
               Text(
                 AppStrings.otpCodeSendFor
-                    .replaceAll(AppStrings.replace, '09139936173'),
+                    .replaceAll(AppStrings.replace, number),
                 style: AppTextStyles.title,
               ),
               AppDimes.medium.hight,
