@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:cherry_toast/cherry_toast.dart';
 import 'package:clock_shop/components/text_style.dart';
 import 'package:clock_shop/gen/assets.gen.dart';
 import 'package:clock_shop/res/dimends.dart';
@@ -11,14 +14,61 @@ import 'package:clock_shop/widget/main_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class VerifyOtpScreen extends StatelessWidget {
+class VerifyOtpScreen extends StatefulWidget {
   final String number;
   const VerifyOtpScreen({super.key, required this.number});
 
   @override
-  Widget build(BuildContext context) {
-    // get phone number to previous page
+  State<VerifyOtpScreen> createState() => _VerifyOtpScreenState();
+}
 
+class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    statrTime();
+  }
+
+  late Timer maintimer;
+  int start = 120;
+
+  statrTime() {
+    const onesec = Duration(seconds: 1);
+    maintimer = Timer.periodic(
+      onesec,
+      (timer) {
+        setState(
+          () {
+            if (start == 0) {
+              maintimer.cancel();
+              CherryToast.error(
+                title: const Text("مدت زمان وارد کردن کد پبامکی منقضی شده هست ",
+                    style: AppTextStyles.title),
+              ).show(context);
+              Future.delayed(const Duration(seconds: 5)).then((value) {
+                Navigator.of(context).pop();
+              });
+            } else {
+              start--;
+            }
+          },
+        );
+      },
+    );
+  }
+
+  String formatTimer(int sec) {
+    int minuet = sec ~/ 60;
+    int second = sec % 60;
+    String minStart = minuet.toString().padLeft(2, '0');
+    String secondStart = second.toString().padLeft(2, '0');
+
+    return '$minStart:$secondStart';
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final TextEditingController controller = TextEditingController();
     return Scaffold(
       body: SizedBox(
@@ -33,19 +83,24 @@ class VerifyOtpScreen extends StatelessWidget {
               AppDimes.medium.hight,
               Text(
                 AppStrings.otpCodeSendFor
-                    .replaceAll(AppStrings.replace, number),
+                    .replaceAll(AppStrings.replace, widget.number),
                 style: AppTextStyles.title,
               ),
               AppDimes.medium.hight,
-              const Text(
-                AppStrings.wrongNumberEditNumber,
-                style: AppTextStyles.primaryThemeTextStyle,
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  AppStrings.wrongNumberEditNumber,
+                  style: AppTextStyles.primaryThemeTextStyle,
+                ),
               ),
               AppDimes.large.hight,
               MyAppTextFelid(
                 label: AppStrings.enterVerificationCode,
                 hint: AppStrings.hintVerificationCode,
-                caption: '2:30',
+                caption: formatTimer(start),
                 controller: controller,
                 type: TextInputType.number,
               ),
@@ -74,7 +129,7 @@ class VerifyOtpScreen extends StatelessWidget {
                     return MainBottom(
                       onPressed: () {
                         BlocProvider.of<AuthCubit>(context)
-                            .checkOtp(number, controller.text);
+                            .checkOtp(widget.number, controller.text);
                       },
                       text: AppStrings.next,
                     );
