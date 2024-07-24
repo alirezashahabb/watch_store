@@ -3,9 +3,13 @@ import 'package:clock_shop/gen/assets.gen.dart';
 import 'package:clock_shop/res/dimends.dart';
 import 'package:clock_shop/res/extions.dart';
 import 'package:clock_shop/res/string.dart';
+import 'package:clock_shop/screens/auth/cubit/auth_cubit.dart';
+import 'package:clock_shop/screens/register_otp_screen.dart';
+import 'package:clock_shop/screens/root_screen.dart';
 import 'package:clock_shop/widget/app_text_feild.dart';
 import 'package:clock_shop/widget/main_bottom.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class VerifyOtpScreen extends StatelessWidget {
   final String number;
@@ -45,9 +49,37 @@ class VerifyOtpScreen extends StatelessWidget {
                 controller: controller,
                 type: TextInputType.number,
               ),
-              MainBottom(
-                onPressed: () {},
-                text: AppStrings.next,
+              BlocConsumer<AuthCubit, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthNotVerifyState) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const RegisterScreen(),
+                      ),
+                    );
+                  } else if (state is AuthIsVerifyState) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const RootScreen(),
+                      ),
+                    );
+                  }
+                },
+                builder: (context, state) {
+                  if (state is AuthLoadingState) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else {
+                    return MainBottom(
+                      onPressed: () {
+                        BlocProvider.of<AuthCubit>(context)
+                            .checkOtp(number, controller.text);
+                      },
+                      text: AppStrings.next,
+                    );
+                  }
+                },
               )
             ],
           ),

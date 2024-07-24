@@ -16,8 +16,12 @@ final class AuthSuccessesState extends AuthState {
 }
 
 // this state for check and verify otpCode
-final class AuthVerifyState extends AuthState {}
+final class AuthIsVerifyState extends AuthState {}
+
+final class AuthNotVerifyState extends AuthState {}
 
 final class AuthLoggedInState extends AuthState {}
 
 final class AuthLogeOutState extends AuthState {}
+
+final class AuthDialogState extends AuthState {}

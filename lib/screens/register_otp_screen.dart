@@ -8,8 +8,8 @@ import 'package:clock_shop/widget/main_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class RegisterOtp extends StatelessWidget {
-  const RegisterOtp({super.key});
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

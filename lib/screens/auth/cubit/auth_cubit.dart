@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:clock_shop/data/constant/url_string.dart';
 import "package:dio/dio.dart";
@@ -21,16 +19,17 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoadingState());
     try {
       await _dio.post('public/api/v1/send_sms', data: {"mobile": mobile}).then(
-          (value) {
-        debugPrint(value.toString());
-        if (value.statusCode == 201) {
-          emit(
-            AuthSuccessesState(number: mobile),
-          );
-        } else {
-          emit(AuthErrorState());
-        }
-      });
+        (value) {
+          debugPrint(value.toString());
+          if (value.statusCode == 201) {
+            emit(
+              AuthSuccessesState(number: mobile),
+            );
+          } else {
+            emit(AuthErrorState());
+          }
+        },
+      );
     } catch (e) {
       emit(AuthErrorState());
     }
@@ -40,20 +39,23 @@ class AuthCubit extends Cubit<AuthState> {
   checkOtp(String mobile, String code) async {
     emit(AuthLoadingState());
     try {
-      Response response =
-          await _dio.post('public/api/v1/check_sms_code', data: {
+      await _dio.post('public/api/v1/check_sms_code', data: {
         "mobile": mobile,
-        "code": code,
-      }).then((value) {
-        log(value.toString());
-
-        if (value.statusCode == 201) {
-          emit(AuthSuccessesState(number: mobile));
-        } else {
-          emit(AuthErrorState());
-        }
-        return value.data;
-      });
+        'code': code,
+      }).then(
+        (value) {
+          debugPrint(value.toString());
+          if (value.statusCode == 201) {
+            if (value.data['data']['is_registered']) {
+              emit(AuthIsVerifyState());
+            } else {
+              emit(AuthNotVerifyState());
+            }
+          } else {
+            emit(AuthErrorState());
+          }
+        },
+      );
     } catch (e) {
       emit(AuthErrorState());
     }
