@@ -38,16 +38,10 @@ class SendSmsScreen extends StatelessWidget {
               BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is AuthSuccessesState) {
-                    CherryToast.success(
-                      title: const Text("ارسال پیامک انجام شد",
-                          style: AppTextStyles.title),
-                    ).show(context);
-                    Future.delayed(const Duration(seconds: 3)).then((value) {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) =>
-                            VerifyOtpScreen(number: state.number),
-                      ));
-                    });
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          VerifyOtpScreen(number: state.number),
+                    ));
                   } else if (state is AuthErrorState) {
                     return CherryToast.error(
                       title: const Text("خطایی رخ داده هست",
@@ -57,7 +51,9 @@ class SendSmsScreen extends StatelessWidget {
                 },
                 builder: (context, state) {
                   if (state is AuthLoadingState) {
-                    return const SizedBox();
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
                   } else {
                     return MainBottom(
                       onPressed: () {
