@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:clock_shop/data/constant/url_string.dart';
+import 'package:clock_shop/utils/sahred_prefrence_constant.dart';
+import 'package:clock_shop/utils/shared_pref_mangment.dart';
 import "package:dio/dio.dart";
 import 'package:flutter/material.dart';
 
@@ -46,6 +48,9 @@ class AuthCubit extends Cubit<AuthState> {
         (value) {
           debugPrint(value.toString());
           if (value.statusCode == 201) {
+            SharedPreferenceManger().saveString(
+                SharedPreferencesConstants.token, value.data['data']['token']);
+
             if (value.data['data']['is_registered']) {
               emit(AuthIsVerifyState());
             } else {

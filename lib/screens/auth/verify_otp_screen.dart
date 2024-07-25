@@ -23,6 +23,7 @@ class VerifyOtpScreen extends StatefulWidget {
 }
 
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
+  final TextEditingController controller = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
@@ -69,7 +70,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
     return Scaffold(
       body: SizedBox(
         width: double.infinity,
