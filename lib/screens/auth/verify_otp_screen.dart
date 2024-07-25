@@ -106,6 +106,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               ),
               BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {
+                  maintimer.cancel();
                   if (state is AuthNotVerifyState) {
                     Navigator.of(context).push(
                       MaterialPageRoute(

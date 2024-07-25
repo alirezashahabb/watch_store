@@ -2,19 +2,29 @@ import 'package:clock_shop/components/text_style.dart';
 import 'package:clock_shop/gen/assets.gen.dart';
 import 'package:clock_shop/res/dimends.dart';
 import 'package:clock_shop/res/string.dart';
+import 'package:clock_shop/utils/image_handler.dart';
 import 'package:clock_shop/widget/app_text_feild.dart';
 import 'package:clock_shop/widget/avatar_profile.dart';
 import 'package:clock_shop/widget/main_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:image_picker/image_picker.dart';
 
-class RegisterScreen extends StatelessWidget {
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
   @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController controller = TextEditingController();
+  final ImageHandler imageHandler = ImageHandler();
+
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
     var size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: RegitrationAppBar(size: size),
       body: SingleChildScrollView(
@@ -24,9 +34,11 @@ class RegisterScreen extends StatelessWidget {
               AppDimes.medium, AppDimes.medium),
           child: Column(
             children: [
-              const AvatarImage(
-                titleAvatar: AppStrings.chooseProfileImage,
-              ),
+              Avatar(
+                  onTap: () async => await imageHandler
+                      .pickAndCropImage(source: ImageSource.gallery)
+                      .then((value) => setState(() {})),
+                  file: imageHandler.getImage),
               MyAppTextFelid(
                 label: AppStrings.nameLastName,
                 hint: AppStrings.hintNameLastName,

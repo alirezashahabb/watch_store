@@ -2,29 +2,38 @@ import 'package:clock_shop/components/text_style.dart';
 import 'package:clock_shop/gen/assets.gen.dart';
 import 'package:clock_shop/res/dimends.dart';
 import 'package:clock_shop/res/extions.dart';
+import 'package:clock_shop/res/string.dart';
 import 'package:flutter/material.dart';
 
-class AvatarImage extends StatelessWidget {
-  final String titleAvatar;
-  const AvatarImage({
-    super.key,
-    required this.titleAvatar,
-  });
+class Avatar extends StatelessWidget {
+  const Avatar({super.key, required this.onTap, required this.file});
+  final onTap;
+  final file;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(100),
-          child: Assets.png.avatar.image(),
-        ),
-        AppDimes.medium.hight,
-        Text(
-          titleAvatar,
-          style: AppTextStyles.avatarText,
-        ),
-      ],
+    final size = MediaQuery.sizeOf(context);
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
+        children: [
+          SizedBox(
+            width: size.width * .3,
+            height: size.width * .3,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(1000),
+              child: file == null
+                  ? Image.asset(Assets.png.avatar.path)
+                  : Image.file(file),
+            ),
+          ),
+          AppDimes.medium.hight,
+          const Text(
+            AppStrings.chooseProfileImage,
+            style: AppTextStyles.avatarText,
+          )
+        ],
+      ),
     );
   }
 }
