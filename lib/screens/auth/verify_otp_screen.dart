@@ -7,7 +7,7 @@ import 'package:clock_shop/res/dimends.dart';
 import 'package:clock_shop/res/extions.dart';
 import 'package:clock_shop/res/string.dart';
 import 'package:clock_shop/screens/auth/cubit/auth_cubit.dart';
-import 'package:clock_shop/screens/register_otp_screen.dart';
+import 'package:clock_shop/screens/register/register_screen.dart';
 import 'package:clock_shop/screens/root_screen.dart';
 import 'package:clock_shop/widget/app_text_feild.dart';
 import 'package:clock_shop/widget/main_bottom.dart';
