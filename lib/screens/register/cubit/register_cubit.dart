@@ -9,8 +9,8 @@ import 'package:watch_store/utils/shared_pref_mangment.dart';
 
 part 'register_state.dart';
 
-class register extends Cubit<RegisterState> {
-  register() : super(RegisterInitialState());
+class RegisterCubit extends Cubit<RegisterState> {
+  RegisterCubit() : super(RegisterInitialState());
 
   final Dio _dio = Dio(
     BaseOptions(baseUrl: EndPoint.baseUrl),
@@ -42,6 +42,7 @@ class register extends Cubit<RegisterState> {
       await _dio
           .post('public/api/v1/register', data: FormData.fromMap(user.toMap()))
           .then((value) {
+        print(value.statusCode);
         if (value.statusCode == 201) {
           emit(RegisterSuccessfulState());
         } else {
