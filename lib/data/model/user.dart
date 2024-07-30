@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class User {
+class UserModel {
   final String name;
   final String phone;
   final String address;
@@ -9,7 +9,7 @@ class User {
   final double lat;
   final double lng;
 
-  User({
+  UserModel({
     required this.name,
     required this.phone,
     required this.address,
@@ -31,9 +31,9 @@ class User {
     };
   }
 
-  factory User.fromJson(String? jsonString) {
+  factory UserModel.fromJson(String? jsonString) {
     Map<String, dynamic> map = jsonDecode(jsonString!);
-    return User(
+    return UserModel(
         name: map['name'],
         phone: map['phone'],
         address: map['address'],

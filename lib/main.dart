@@ -1,11 +1,11 @@
-import 'package:clock_shop/components/them.dart';
-import 'package:clock_shop/screens/auth/cubit/auth_cubit.dart';
-import 'package:clock_shop/screens/auth/sens_sms_screen.dart';
-import 'package:clock_shop/screens/root_screen.dart';
-import 'package:clock_shop/utils/shared_pref_mangment.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:watch_store/components/them.dart';
+import 'package:watch_store/screens/auth/cubit/auth_cubit.dart';
+import 'package:watch_store/screens/auth/sens_sms_screen.dart';
+import 'package:watch_store/screens/root_screen.dart';
+import 'package:watch_store/utils/shared_pref_mangment.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

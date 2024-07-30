@@ -1,6 +1,6 @@
-import 'package:clock_shop/components/button_style.dart';
-import 'package:clock_shop/components/text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:watch_store/components/button_style.dart';
+import 'package:watch_store/components/text_style.dart';
 
 class MainBottom extends StatelessWidget {
   final void Function() onPressed;

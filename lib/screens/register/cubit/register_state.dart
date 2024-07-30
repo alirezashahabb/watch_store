@@ -11,4 +11,8 @@ final class RegisterErrorState extends RegisterState {}
 
 final class RegisterSuccessfulState extends RegisterState {}
 
-final class RegisterLotionState extends RegisterState {}
+final class RegisterLocationState extends RegisterState {
+  final GeoPoint? location;
+
+  RegisterLocationState({required this.location});
+}

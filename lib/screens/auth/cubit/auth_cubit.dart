@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
-import 'package:clock_shop/data/constant/url_string.dart';
-import 'package:clock_shop/utils/sahred_prefrence_constant.dart';
-import 'package:clock_shop/utils/shared_pref_mangment.dart';
 import "package:dio/dio.dart";
 import 'package:flutter/material.dart';
+import 'package:watch_store/data/constant/url_string.dart';
+import 'package:watch_store/utils/sahred_prefrence_constant.dart';
+import 'package:watch_store/utils/shared_pref_mangment.dart';
 
 part 'auth_state.dart';
 

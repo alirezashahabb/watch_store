@@ -1,6 +1,6 @@
-import 'package:clock_shop/res/color.dart';
-import 'package:clock_shop/res/dimends.dart';
 import 'package:flutter/material.dart';
+import 'package:watch_store/res/color.dart';
+import 'package:watch_store/res/dimends.dart';
 
 ThemeData lightTheme() {
   return ThemeData(
@@ -10,15 +10,15 @@ ThemeData lightTheme() {
     primaryColor: AppColors.primaryColor,
     elevatedButtonTheme: const ElevatedButtonThemeData(
       style: ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll(AppColors.primaryColor),
+        backgroundColor: WidgetStatePropertyAll(AppColors.primaryColor),
       ),
     ),
     scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: MaterialStateColor.resolveWith(
+      fillColor: WidgetStateColor.resolveWith(
         (states) {
-          if (states.contains(MaterialState.focused)) {
+          if (states.contains(WidgetState.focused)) {
             return AppColors.focusedTextField;
           } else {
             return AppColors.unFocusedTextField;

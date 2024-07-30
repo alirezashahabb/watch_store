@@ -1,14 +1,14 @@
-import 'package:clock_shop/components/text_style.dart';
-import 'package:clock_shop/gen/assets.gen.dart';
-import 'package:clock_shop/res/dimends.dart';
-import 'package:clock_shop/res/string.dart';
-import 'package:clock_shop/utils/image_handler.dart';
-import 'package:clock_shop/widget/app_text_feild.dart';
-import 'package:clock_shop/widget/avatar_profile.dart';
-import 'package:clock_shop/widget/main_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:watch_store/components/text_style.dart';
+import 'package:watch_store/gen/assets.gen.dart';
+import 'package:watch_store/res/dimends.dart';
+import 'package:watch_store/res/string.dart';
+import 'package:watch_store/utils/image_handler.dart';
+import 'package:watch_store/widget/app_text_feild.dart';
+import 'package:watch_store/widget/avatar_profile.dart';
+import 'package:watch_store/widget/main_bottom.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

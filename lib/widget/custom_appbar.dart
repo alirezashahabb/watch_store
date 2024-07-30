@@ -1,9 +1,9 @@
 import 'package:badges/badges.dart' as badges;
-import 'package:clock_shop/components/text_style.dart';
-import 'package:clock_shop/res/color.dart';
-import 'package:clock_shop/res/dimends.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:watch_store/components/text_style.dart';
+import 'package:watch_store/res/color.dart';
+import 'package:watch_store/res/dimends.dart';
 
 import '../gen/assets.gen.dart';
 

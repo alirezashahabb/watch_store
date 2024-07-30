@@ -1,8 +1,8 @@
-import 'package:clock_shop/components/text_style.dart';
-import 'package:clock_shop/res/dimends.dart';
-import 'package:clock_shop/widget/custom_appbar.dart';
-import 'package:clock_shop/widget/product_item.dart';
 import 'package:flutter/material.dart';
+import 'package:watch_store/components/text_style.dart';
+import 'package:watch_store/res/dimends.dart';
+import 'package:watch_store/widget/custom_appbar.dart';
+import 'package:watch_store/widget/product_item.dart';
 
 class ProductListScreen extends StatelessWidget {
   const ProductListScreen({super.key});

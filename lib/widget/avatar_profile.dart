@@ -1,9 +1,9 @@
-import 'package:clock_shop/components/text_style.dart';
-import 'package:clock_shop/gen/assets.gen.dart';
-import 'package:clock_shop/res/dimends.dart';
-import 'package:clock_shop/res/extions.dart';
-import 'package:clock_shop/res/string.dart';
 import 'package:flutter/material.dart';
+import 'package:watch_store/components/text_style.dart';
+import 'package:watch_store/gen/assets.gen.dart';
+import 'package:watch_store/res/dimends.dart';
+import 'package:watch_store/res/extions.dart';
+import 'package:watch_store/res/string.dart';
 
 class Avatar extends StatelessWidget {
   const Avatar({super.key, required this.onTap, required this.file});

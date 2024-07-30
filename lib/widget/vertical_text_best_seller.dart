@@ -1,7 +1,7 @@
-import 'package:clock_shop/components/text_style.dart';
-import 'package:clock_shop/gen/assets.gen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:watch_store/components/text_style.dart';
+import 'package:watch_store/gen/assets.gen.dart';
 
 /// this is Vertical Text for Best offers Slider
 class VerticalTextBestSeller extends StatelessWidget {

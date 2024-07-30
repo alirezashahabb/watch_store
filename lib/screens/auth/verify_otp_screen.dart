@@ -1,18 +1,18 @@
 import 'dart:async';
 
 import 'package:cherry_toast/cherry_toast.dart';
-import 'package:clock_shop/components/text_style.dart';
-import 'package:clock_shop/gen/assets.gen.dart';
-import 'package:clock_shop/res/dimends.dart';
-import 'package:clock_shop/res/extions.dart';
-import 'package:clock_shop/res/string.dart';
-import 'package:clock_shop/screens/auth/cubit/auth_cubit.dart';
-import 'package:clock_shop/screens/register/register_screen.dart';
-import 'package:clock_shop/screens/root_screen.dart';
-import 'package:clock_shop/widget/app_text_feild.dart';
-import 'package:clock_shop/widget/main_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:watch_store/components/text_style.dart';
+import 'package:watch_store/gen/assets.gen.dart';
+import 'package:watch_store/res/dimends.dart';
+import 'package:watch_store/res/extions.dart';
+import 'package:watch_store/res/string.dart';
+import 'package:watch_store/screens/auth/cubit/auth_cubit.dart';
+import 'package:watch_store/screens/register/register_screen.dart';
+import 'package:watch_store/screens/root_screen.dart';
+import 'package:watch_store/widget/app_text_feild.dart';
+import 'package:watch_store/widget/main_bottom.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
   final String number;

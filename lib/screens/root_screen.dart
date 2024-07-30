@@ -1,11 +1,11 @@
-import 'package:clock_shop/components/text_style.dart';
-import 'package:clock_shop/gen/assets.gen.dart';
-import 'package:clock_shop/res/color.dart';
-import 'package:clock_shop/screens/basket_screen.dart';
-import 'package:clock_shop/screens/home_screen.dart';
-import 'package:clock_shop/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:watch_store/components/text_style.dart';
+import 'package:watch_store/gen/assets.gen.dart';
+import 'package:watch_store/res/color.dart';
+import 'package:watch_store/screens/basket_screen.dart';
+import 'package:watch_store/screens/home_screen.dart';
+import 'package:watch_store/screens/profile_screen.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});

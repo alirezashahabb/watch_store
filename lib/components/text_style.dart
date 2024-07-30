@@ -1,6 +1,6 @@
-import 'package:clock_shop/gen/fonts.gen.dart';
-import 'package:clock_shop/res/color.dart';
 import 'package:flutter/material.dart';
+import 'package:watch_store/gen/fonts.gen.dart';
+import 'package:watch_store/res/color.dart';
 
 class AppTextStyles {
   AppTextStyles._();
