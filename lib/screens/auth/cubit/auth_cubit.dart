@@ -20,7 +20,7 @@ class AuthCubit extends Cubit<AuthState> {
   sendSms(String mobile) async {
     emit(AuthLoadingState());
     try {
-      await _dio.post('public/api/v1/send_sms', data: {"mobile": mobile}).then(
+      await _dio.post('send_sms', data: {"mobile": mobile}).then(
         (value) {
           debugPrint(value.toString());
           if (value.statusCode == 201) {
@@ -41,7 +41,7 @@ class AuthCubit extends Cubit<AuthState> {
   checkOtp(String mobile, String code) async {
     emit(AuthLoadingState());
     try {
-      await _dio.post('public/api/v1/check_sms_code', data: {
+      await _dio.post('check_sms_code', data: {
         "mobile": mobile,
         'code': code,
       }).then(

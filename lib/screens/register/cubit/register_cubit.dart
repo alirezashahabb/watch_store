@@ -40,7 +40,7 @@ class RegisterCubit extends Cubit<RegisterState> {
           SharedPreferenceManger().getString(SharedPreferencesConstants.token);
       _dio.options.headers['Authorization'] = 'Bearer $token';
       await _dio
-          .post('public/api/v1/register', data: FormData.fromMap(user.toMap()))
+          .post('register', data: FormData.fromMap(user.toMap()))
           .then((value) {
         print(value.statusCode);
         if (value.statusCode == 201) {
