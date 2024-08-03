@@ -3,14 +3,14 @@ class HTTPResponseValidator {
     if (statusCode >= 200 && statusCode < 300) {
       return true;
     } else {
-      throw HTTPExeption(statusCode);
+      throw HTTPException(statusCode);
     }
   }
 }
 
-class HTTPExeption implements Exception {
+class HTTPException implements Exception {
   final int statusCode;
-  HTTPExeption(this.statusCode);
+  HTTPException(this.statusCode);
 
   @override
   String toString() {
