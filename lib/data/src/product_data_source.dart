@@ -4,7 +4,7 @@ import 'package:watch_store/data/model/product.dart';
 import 'package:watch_store/utils/response_validator.dart';
 
 abstract class IProductDataSource {
-  Future<List<ProductModel>> getAllByBrand(int id);
+  Future<List<ProductModel>> getAllByBrandId(int id);
   Future<List<ProductModel>> getAllByCategory(int id);
   Future<List<ProductModel>> getAllProductsBySearch(String search);
   Future<List<ProductModel>> getAllBrands();
@@ -20,7 +20,7 @@ class ProductDataSource implements IProductDataSource {
   final Dio _dio = Dio(BaseOptions(baseUrl: EndPoint.baseUrl));
 
   @override
-  Future<List<ProductModel>> getAllByBrand(int id) async {
+  Future<List<ProductModel>> getAllByBrandId(int id) async {
     List<ProductModel> product = [];
     Response response = await _dio.get(
       'products_by_brand',
