@@ -7,6 +7,13 @@ abstract class IProductDataSource {
   Future<List<ProductModel>> getAllByBrand(int id);
   Future<List<ProductModel>> getAllByCategory(int id);
   Future<List<ProductModel>> getAllProductsBySearch(String search);
+  Future<List<ProductModel>> getAllBrands();
+
+  Future<List<ProductModel>> getAllNewestProducts();
+
+  Future<List<ProductModel>> getAllCheapestProduct();
+  Future<List<ProductModel>> getAllMostExpensive();
+  Future<List<ProductModel>> getAllMostViewProducts();
 }
 
 class ProductDataSource implements IProductDataSource {
@@ -59,6 +66,76 @@ class ProductDataSource implements IProductDataSource {
         'search': search,
       },
     );
+    HTTPResponseValidator.isValidStatusCode(response.statusCode!);
+
+    for (var element in response.data['data'] as List) {
+      product.add(ProductModel.fromJson(element));
+    }
+
+    return product;
+  }
+
+  ///========================================================================>>>>>> for brand
+  @override
+  Future<List<ProductModel>> getAllBrands() async {
+    List<ProductModel> product = [];
+    Response response = await _dio.get('brands');
+    HTTPResponseValidator.isValidStatusCode(response.statusCode!);
+
+    for (var element in response.data['data'] as List) {
+      product.add(ProductModel.fromJson(element));
+    }
+
+    return product;
+  }
+
+  ///========================================================================>>>>>> for CheapestProduct
+  @override
+  Future<List<ProductModel>> getAllCheapestProduct() async {
+    List<ProductModel> product = [];
+    Response response = await _dio.get('cheapest_products');
+    HTTPResponseValidator.isValidStatusCode(response.statusCode!);
+
+    for (var element in response.data['data'] as List) {
+      product.add(ProductModel.fromJson(element));
+    }
+
+    return product;
+  }
+
+  ///========================================================================>>>>>> for MostExpensive
+  @override
+  Future<List<ProductModel>> getAllMostExpensive() async {
+    List<ProductModel> product = [];
+    Response response = await _dio.get('most_expensive_products');
+    HTTPResponseValidator.isValidStatusCode(response.statusCode!);
+
+    for (var element in response.data['data'] as List) {
+      product.add(ProductModel.fromJson(element));
+    }
+
+    return product;
+  }
+
+  ///========================================================================>>>>>> for MostView
+  @override
+  Future<List<ProductModel>> getAllMostViewProducts() async {
+    List<ProductModel> product = [];
+    Response response = await _dio.get('most_viewed_products');
+    HTTPResponseValidator.isValidStatusCode(response.statusCode!);
+
+    for (var element in response.data['data'] as List) {
+      product.add(ProductModel.fromJson(element));
+    }
+
+    return product;
+  }
+
+  ///========================================================================>>>>>> for NewestProducts
+  @override
+  Future<List<ProductModel>> getAllNewestProducts() async {
+    List<ProductModel> product = [];
+    Response response = await _dio.get('/newest_products');
     HTTPResponseValidator.isValidStatusCode(response.statusCode!);
 
     for (var element in response.data['data'] as List) {
