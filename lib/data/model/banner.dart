@@ -1,11 +1,11 @@
-class Banner {
+class BannerModel {
   int id;
   String title;
   String image;
   DateTime createdAt;
   DateTime updatedAt;
 
-  Banner({
+  BannerModel({
     required this.id,
     required this.title,
     required this.image,
@@ -13,8 +13,8 @@ class Banner {
     required this.updatedAt,
   });
 
-  factory Banner.fromJson(Map<String, dynamic> json) {
-    return Banner(
+  factory BannerModel.fromJson(Map<String, dynamic> json) {
+    return BannerModel(
       id: json['id'] as int,
       title: json['title'] as String,
       image: json['image'] as String,
