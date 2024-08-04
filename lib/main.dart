@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:watch_store/components/them.dart';
+import 'package:watch_store/data/repo/repo_test.dart';
 import 'package:watch_store/screens/auth/cubit/auth_cubit.dart';
-import 'package:watch_store/screens/auth/sens_sms_screen.dart';
-import 'package:watch_store/screens/root_screen.dart';
 import 'package:watch_store/utils/shared_pref_mangment.dart';
 
 void main() async {
@@ -37,18 +36,21 @@ class MyApp extends StatelessWidget {
         theme: lightTheme(),
         // initialRoute: ScreenNames.root,
         // routes: routes,
-        home: BlocBuilder<AuthCubit, AuthState>(
-          builder: (context, state) {
-            if (state is AuthLoggedInState) {
-              return const RootScreen();
-            } else if (state is AuthLogeOutState) {
-              return const SendSmsScreen();
-            } else {
-              return const SendSmsScreen();
-            }
-          },
-        ),
+        home: const RepoTest(),
       ),
     );
   }
 }
+
+
+// BlocBuilder<AuthCubit, AuthState>(
+//           builder: (context, state) {
+//             if (state is AuthLoggedInState) {
+//               return const RootScreen();
+//             } else if (state is AuthLogeOutState) {
+//               return const SendSmsScreen();
+//             } else {
+//               return const SendSmsScreen();
+//             }
+//           },
+//         ),

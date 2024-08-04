@@ -96,7 +96,7 @@ class ProductDataSource implements IProductDataSource {
     Response response = await _dio.get('cheapest_products');
     HTTPResponseValidator.isValidStatusCode(response.statusCode!);
 
-    for (var element in response.data['data'] as List) {
+    for (var element in response.data['all_products']['data'] as List) {
       product.add(ProductModel.fromJson(element));
     }
 
@@ -110,7 +110,7 @@ class ProductDataSource implements IProductDataSource {
     Response response = await _dio.get('most_expensive_products');
     HTTPResponseValidator.isValidStatusCode(response.statusCode!);
 
-    for (var element in response.data['data'] as List) {
+    for (var element in response.data['all_products']['data'] as List) {
       product.add(ProductModel.fromJson(element));
     }
 
@@ -124,7 +124,7 @@ class ProductDataSource implements IProductDataSource {
     Response response = await _dio.get('most_viewed_products');
     HTTPResponseValidator.isValidStatusCode(response.statusCode!);
 
-    for (var element in response.data['data'] as List) {
+    for (var element in response.data['all_products']['data'] as List) {
       product.add(ProductModel.fromJson(element));
     }
 
@@ -138,7 +138,7 @@ class ProductDataSource implements IProductDataSource {
     Response response = await _dio.get('/newest_products');
     HTTPResponseValidator.isValidStatusCode(response.statusCode!);
 
-    for (var element in response.data['data'] as List) {
+    for (var element in response.data['all_products']['data'] as List) {
       product.add(ProductModel.fromJson(element));
     }
 
