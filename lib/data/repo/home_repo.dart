@@ -12,3 +12,5 @@ class HomeRepo implements IHomeRepo {
   @override
   Future<HomeModel> getHome() => _dataSource.getHome();
 }
+
+final homeRepository = HomeRepo(HomeRemoteDataSource());
