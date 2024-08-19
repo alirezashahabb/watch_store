@@ -8,21 +8,16 @@ import 'package:watch_store/utils/shared_pref_mangment.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
-  final Dio _dio = Dio(
-    BaseOptions(
-      baseUrl: EndPoint.baseUrl,
-    ),
-  );
+  final Dio _dio = Dio();
   AuthCubit() : super(AuthInitialState()) {
     emit(AuthLogeOutState());
   }
 
   sendSms(String mobile) async {
-    emit(AuthLoadingState());
     try {
-      await _dio.post('send_sms', data: {"mobile": mobile}).then(
+      emit(AuthLoadingState());
+      await _dio.post(Endpoints.sendSms, data: {"mobile": mobile}).then(
         (value) {
-          debugPrint(value.toString());
           if (value.statusCode == 201) {
             emit(
               AuthSuccessesState(number: mobile),
@@ -41,12 +36,11 @@ class AuthCubit extends Cubit<AuthState> {
   checkOtp(String mobile, String code) async {
     emit(AuthLoadingState());
     try {
-      await _dio.post('check_sms_code', data: {
+      await _dio.post(Endpoints.checkSmsCode, data: {
         "mobile": mobile,
         'code': code,
       }).then(
         (value) {
-          debugPrint(value.toString());
           if (value.statusCode == 201) {
             SharedPreferenceManger().saveString(
                 SharedPreferencesConstants.token, value.data['data']['token']);
@@ -73,24 +67,3 @@ class AuthCubit extends Cubit<AuthState> {
   // check logout
   logout() {}
 }
-
-
-//  sendSms(String mobile) async {
-//     emit(AuthLoadingState());
-//     try {
-//       Response response = await _dio.post('public/api/v1/send_sms', data: {
-//         "mobile": mobile,
-//       }).then((value) {
-//         log(value.toString());
-
-//         if (value.statusCode == 201) {
-//           emit(AuthSuccessesState());
-//         } else {
-//           emit(AuthErrorState());
-//         }
-//         return value.data;
-//       });
-//     } catch (e) {
-//       emit(AuthErrorState());
-//     }
-//   }
