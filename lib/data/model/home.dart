@@ -4,7 +4,7 @@ import 'package:watch_store/data/model/product.dart';
 import 'package:watch_store/data/model/slide.dart';
 
 class HomeModel {
-  List<SlideModel> sliders;
+  List<SliderModel> sliders;
   List<CategoryModel> categories;
   List<ProductModel> amazingProducts;
   List<ProductModel> mostSellerProducts;
@@ -24,7 +24,7 @@ class HomeModel {
     return HomeModel(
       //get listJson and convert to List on Dart
       sliders: (json['sliders'] as List<dynamic>)
-          .map((e) => SlideModel.fromJson(e))
+          .map((e) => SliderModel.fromJson(e))
           .toList(),
       categories: (json['categories'] as List<dynamic>)
           .map((e) => CategoryModel.fromJson(e))

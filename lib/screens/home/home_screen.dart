@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_store/data/repo/home_repo.dart';
@@ -8,6 +7,7 @@ import 'package:watch_store/res/dimends.dart';
 import 'package:watch_store/res/extions.dart';
 import 'package:watch_store/res/string.dart';
 import 'package:watch_store/screens/home/bloc/home_bloc.dart';
+import 'package:watch_store/widget/app_slider.dart';
 import 'package:watch_store/widget/category_items.dart';
 import 'package:watch_store/widget/product_item.dart';
 import 'package:watch_store/widget/search_bar.dart';
@@ -42,37 +42,25 @@ class HomeScreen extends StatelessWidget {
                         onTap: () {},
                       ),
                       // AppSlider
-                      const AppSlider(),
-                      // Category Section
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CategoryItems(
-                            categoryName: AppStrings.classic,
-                            imagePath: Assets.svg.clasic,
-                            linerColors: AppColors.catClasicColors,
-                            onTap: () {},
-                          ),
-                          CategoryItems(
-                            categoryName: AppStrings.smart,
-                            imagePath: Assets.svg.smart,
-                            linerColors: AppColors.catSmartColors,
-                            onTap: () {},
-                          ),
-                          CategoryItems(
-                            categoryName: AppStrings.digital,
-                            imagePath: Assets.svg.digital,
-                            linerColors: AppColors.catDigitalColors,
-                            onTap: () {},
-                          ),
-                          CategoryItems(
-                            categoryName: AppStrings.desktop,
-                            imagePath: Assets.svg.desktop,
-                            linerColors: AppColors.catDesktopColors,
-                            onTap: () {},
-                          ),
-                        ],
+                      AppSlider(
+                        imgList: state.homeModel.sliders,
                       ),
+                      // Category Section
+                      SizedBox(
+                          width: 62,
+                          height: 62,
+                          child: ListView.builder(
+                            itemCount: state.homeModel.categories.length,
+                            itemBuilder: (context, index) {
+                              CategoryItems(
+                                categoryName: AppStrings.classic,
+                                imagePath: Assets.svg.clasic,
+                                linerColors: AppColors.catClasicColors,
+                                onTap: () {},
+                              );
+                              return null;
+                            },
+                          )),
                       AppDimes.large.hight,
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
@@ -112,51 +100,6 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-/// this Widget for AppSlider on Application
-class AppSlider extends StatelessWidget {
-  const AppSlider({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final CarouselController carouselController = CarouselController();
-    return SizedBox(
-      height: 250,
-      width: double.infinity,
-      child: CarouselSlider(
-        carouselController: carouselController,
-        options: CarouselOptions(
-          autoPlay: true,
-        ),
-        items: [
-          Container(
-            margin: const EdgeInsets.all(AppDimes.medium),
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(AppDimes.medium),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(AppDimes.medium),
-            decoration: BoxDecoration(
-              color: Colors.yellow,
-              borderRadius: BorderRadius.circular(AppDimes.medium),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.all(AppDimes.medium),
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(AppDimes.medium),
-            ),
-          ),
-        ],
       ),
     );
   }
