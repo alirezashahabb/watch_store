@@ -8,13 +8,14 @@ abstract class IHomeDataSource {
 }
 
 class HomeRemoteDataSource implements IHomeDataSource {
-  final Dio _dio = Dio(BaseOptions(
-    baseUrl: EndPoint.baseUrl,
-  ));
+  final Dio httpClient;
+
+  HomeRemoteDataSource({required this.httpClient});
   @override
   Future<HomeModel> getHome() async {
     final HomeModel home;
-    Response response = await _dio.get('home');
+    Response response = await httpClient.get(Endpoints.home);
+
     HTTPResponseValidator.isValidStatusCode(response.statusCode ?? 0);
 
     home = HomeModel.fromJson(response.data['data']);

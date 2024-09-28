@@ -37,7 +37,7 @@ class SendSmsScreen extends StatelessWidget {
               ),
               BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {
-                  if (state is AuthSuccessesState) {
+                  if (state is AuthSendSmsState) {
                     Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) =>
                           VerifyOtpScreen(number: state.number),

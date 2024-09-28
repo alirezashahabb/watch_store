@@ -20,7 +20,7 @@ class AuthCubit extends Cubit<AuthState> {
         (value) {
           if (value.statusCode == 201) {
             emit(
-              AuthSuccessesState(number: mobile),
+              AuthSendSmsState(number: mobile),
             );
           } else {
             emit(AuthErrorState());

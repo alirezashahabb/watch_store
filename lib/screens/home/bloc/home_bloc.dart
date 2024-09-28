@@ -7,7 +7,7 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final HomeRepo _homeRepo;
+  final HomeRepository _homeRepo;
   HomeBloc(this._homeRepo) : super(HomeLoadingState()) {
     on<HomeEvent>((event, emit) async {
       if (event is HomeStartedEvent) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:watch_store/components/text_style.dart';
+import 'package:watch_store/data/repo/repo_test.dart';
 import 'package:watch_store/gen/assets.gen.dart';
 import 'package:watch_store/res/color.dart';
 import 'package:watch_store/screens/basket_screen.dart';
@@ -15,6 +16,11 @@ class RootScreen extends StatefulWidget {
 }
 
 class _RootScreenState extends State<RootScreen> {
+  @override
+  void initState() {
+    RepoTest().getData();
+  }
+
   int selectedIndex = 0;
   @override
   Widget build(BuildContext context) {

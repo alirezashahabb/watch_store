@@ -1,16 +1,17 @@
+import 'package:dio/dio.dart';
 import 'package:watch_store/data/model/home.dart';
 import 'package:watch_store/data/src/home_data_source.dart';
 
-abstract class IHomeRepo {
+abstract class IHomeRepository {
   Future<HomeModel> getHome();
 }
 
-class HomeRepo implements IHomeRepo {
+class HomeRepository implements IHomeRepository {
   final IHomeDataSource _dataSource;
 
-  HomeRepo(this._dataSource);
+  HomeRepository(this._dataSource);
   @override
   Future<HomeModel> getHome() => _dataSource.getHome();
 }
 
-final homeRepository = HomeRepo(HomeRemoteDataSource());
+final homerepo = HomeRepository(HomeRemoteDataSource(httpClient: Dio()));

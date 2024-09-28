@@ -12,11 +12,9 @@ part 'register_state.dart';
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterCubit() : super(RegisterInitialState());
 
-  final Dio _dio = Dio(
-    BaseOptions(baseUrl: EndPoint.baseUrl),
-  );
+  final Dio _dio = Dio();
 
-  /// for get location
+  /// for get and pick location  location
   pickTheLocation({required context}) async {
     await showSimplePickerLocation(
             isDismissible: true,
@@ -28,19 +26,22 @@ class RegisterCubit extends Cubit<RegisterState> {
             initPosition: GeoPoint(latitude: 47.4358055, longitude: 8.4737324),
             radius: 8.0,
             context: context)
+
+        //  send  location for RegisterLocationState
         .then((value) => emit(RegisterLocationState(location: value)));
   }
 
   // this is for register
   registerUser({required UserModel user}) async {
-    emit(RegisterLoadingState());
-
     try {
+      emit(RegisterLoadingState());
+
+      /// get token from catch
       String? token =
           SharedPreferenceManger().getString(SharedPreferencesConstants.token);
       _dio.options.headers['Authorization'] = 'Bearer $token';
       await _dio
-          .post('register', data: FormData.fromMap(user.toMap()))
+          .post(Endpoints.register, data: FormData.fromMap(user.toMap()))
           .then((value) {
         print(value.statusCode);
         if (value.statusCode == 201) {

@@ -1,22 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:watch_store/data/repo/product_repo.dart';
-import 'package:watch_store/data/src/product_data_source.dart';
+import 'package:dio/dio.dart';
+import 'package:watch_store/data/repo/home_repo.dart';
+import 'package:watch_store/data/src/home_data_source.dart';
 
-class RepoTest extends StatelessWidget {
-  const RepoTest({super.key});
+class RepoTest {
+  final homerepo = HomeRepository(HomeRemoteDataSource(httpClient: Dio()));
 
-  @override
-  Widget build(BuildContext context) {
-    final prdoct = ProductRepo(ProductDataSource());
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            var show = await prdoct.getAllMostViewProducts();
-          },
-          child: const Text('getData'),
-        ),
-      ),
-    );
-  }
+  getData() async => await homerepo.getHome();
 }

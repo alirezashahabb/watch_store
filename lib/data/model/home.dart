@@ -22,6 +22,7 @@ class HomeModel {
 
   factory HomeModel.fromJson(Map<String, dynamic> json) {
     return HomeModel(
+      //get listJson and convert to List on Dart
       sliders: (json['sliders'] as List<dynamic>)
           .map((e) => SlideModel.fromJson(e))
           .toList(),

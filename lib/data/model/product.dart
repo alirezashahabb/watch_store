@@ -37,18 +37,3 @@ class ProductModel {
     );
   }
 }
-
-
-
-  // {
-  //       "id": 18,
-  //       "title": "ساعت مچی عقربه ای مردانه مدل 9069M-NP",
-  //       "price": 515000,
-  //       "discount": 0,
-  //       "special_expiration": "2022-05-24 00:00:00",
-  //       "discount_price": 515000,
-  //       "product_count": 11,
-  //       "category": "ساعت مردانه",
-  //       "brand": "ورساچه",
-  //       "image": "https://watchstore.sasansafari.com/public/images/product/small/1654350745.png"
-  //     },

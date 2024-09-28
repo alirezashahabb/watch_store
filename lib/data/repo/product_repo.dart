@@ -4,26 +4,14 @@ import 'package:watch_store/data/src/product_data_source.dart';
 abstract class IProductRepo {
   Future<List<ProductModel>> getAllByBrandId(int id);
   Future<List<ProductModel>> getAllByCategory(int id);
+  Future<List<ProductModel>> getAllBySorted(String routeParam);
   Future<List<ProductModel>> getAllProductsBySearch(String search);
-  Future<List<ProductModel>> getAllBrands();
-
-  Future<List<ProductModel>> getAllNewestProducts();
-
-  Future<List<ProductModel>> getAllCheapestProduct();
-  Future<List<ProductModel>> getAllMostExpensive();
-  Future<List<ProductModel>> getAllMostViewProducts();
 }
 
-class ProductRepo implements IProductRepo {
-  final ProductDataSource _dataSource;
+class ProductRepository implements IProductRepo {
+  final IProductDataSource _dataSource;
 
-  ProductRepo(this._dataSource);
-
-  @override
-  Future<List<ProductModel>> getAllBrands() {
-    return _dataSource.getAllBrands();
-  }
-
+  ProductRepository(this._dataSource);
   @override
   Future<List<ProductModel>> getAllByBrandId(int id) {
     return _dataSource.getAllByBrandId(id);
@@ -35,27 +23,12 @@ class ProductRepo implements IProductRepo {
   }
 
   @override
-  Future<List<ProductModel>> getAllCheapestProduct() {
-    return _dataSource.getAllCheapestProduct();
-  }
-
-  @override
-  Future<List<ProductModel>> getAllMostExpensive() {
-    return _dataSource.getAllMostExpensive();
-  }
-
-  @override
-  Future<List<ProductModel>> getAllMostViewProducts() {
-    return _dataSource.getAllMostViewProducts();
-  }
-
-  @override
-  Future<List<ProductModel>> getAllNewestProducts() {
-    return _dataSource.getAllNewestProducts();
+  Future<List<ProductModel>> getAllBySorted(String routeParam) {
+    return _dataSource.getAllBySorted(routeParam);
   }
 
   @override
   Future<List<ProductModel>> getAllProductsBySearch(String search) {
-    return getAllProductsBySearch(search);
+    return _dataSource.getAllProductsBySearch(search);
   }
 }

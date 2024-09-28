@@ -40,6 +40,7 @@ class SharedPreferenceManger {
     return _preferences?.getBool(key);
   }
 
+  // this method remove key
   Future<void> remove(String key) async {
     await _preferences?.remove(key);
   }

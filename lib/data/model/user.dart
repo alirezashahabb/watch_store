@@ -19,6 +19,8 @@ class UserModel {
     required this.lng,
   });
 
+  /// for send params to server
+
   Map<String, dynamic> toMap() {
     return {
       'name': name,
@@ -31,6 +33,7 @@ class UserModel {
     };
   }
 
+  /// convert jsonObject to map dart
   factory UserModel.fromJson(String? jsonString) {
     Map<String, dynamic> map = jsonDecode(jsonString!);
     return UserModel(

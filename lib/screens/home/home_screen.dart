@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: BlocProvider(
         create: (context) {
-          final homeBloc = HomeBloc(homeRepository);
+          final homeBloc = HomeBloc(homerepo);
           homeBloc.add(HomeStartedEvent());
           return homeBloc;
         },

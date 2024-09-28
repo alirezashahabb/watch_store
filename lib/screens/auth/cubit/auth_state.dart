@@ -9,10 +9,11 @@ final class AuthLoadingState extends AuthState {}
 
 final class AuthErrorState extends AuthState {}
 
-final class AuthSuccessesState extends AuthState {
+final class AuthSendSmsState extends AuthState {
+  /// get phone number and use next page
   final String number;
 
-  AuthSuccessesState({required this.number});
+  AuthSendSmsState({required this.number});
 }
 
 // this state for check and verify otpCode

@@ -11,6 +11,7 @@ class ImageHandler {
       final image = await ImagePicker().pickImage(source: source);
       if (image == null) return;
       File? img = File(image.path);
+      // use image cropper after get path image
       img = await _cropImage(imageFile: img);
       _image = img;
     } catch (e) {

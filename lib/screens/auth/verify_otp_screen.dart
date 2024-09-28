@@ -28,13 +28,13 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    statrTime();
+    startTimer();
   }
 
   late Timer maintimer;
   int start = 120;
 
-  statrTime() {
+  startTimer() {
     const onesec = Duration(seconds: 1);
     maintimer = Timer.periodic(
       onesec,
