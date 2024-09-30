@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:watch_store/data/model/product.dart';
 import 'package:watch_store/data/src/product_data_source.dart';
 
@@ -32,3 +33,5 @@ class ProductRepository implements IProductRepo {
     return _dataSource.getAllProductsBySearch(search);
   }
 }
+
+final product = ProductRepository(ProductRemoteDataSource(Dio()));

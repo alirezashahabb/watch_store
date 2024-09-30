@@ -32,7 +32,8 @@ class ProductRemoteDataSource implements IProductDataSource {
     Response response =
         await httpClient.get(Endpoints.productsByCategory + id.toString());
     HTTPResponseValidator.isValidStatusCode(response.statusCode ?? 0);
-    for (var element in (response.data)[['all_products']]['data'] as List) {
+    for (var element
+        in (response.data)[['products_by_category']]['data'] as List) {
       products.add(ProductModel.fromJson(element));
     }
     return products;
