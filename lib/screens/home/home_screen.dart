@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_store/data/repo/home_repo.dart';
-import 'package:watch_store/gen/assets.gen.dart';
 import 'package:watch_store/res/color.dart';
 import 'package:watch_store/res/dimends.dart';
 import 'package:watch_store/res/extions.dart';
-import 'package:watch_store/res/string.dart';
 import 'package:watch_store/screens/home/bloc/home_bloc.dart';
 import 'package:watch_store/widget/app_slider.dart';
 import 'package:watch_store/widget/category_items.dart';
@@ -47,21 +45,25 @@ class HomeScreen extends StatelessWidget {
                       ),
                       // Category Section
                       SizedBox(
-                          width: 62,
-                          height: 62,
+                          height: 150,
                           child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
                             itemCount: state.homeModel.categories.length,
                             itemBuilder: (context, index) {
-                              CategoryItems(
-                                categoryName: AppStrings.classic,
-                                imagePath: Assets.svg.clasic,
-                                linerColors: AppColors.catClasicColors,
-                                onTap: () {},
+                              var items = state.homeModel.categories[index];
+                              return Padding(
+                                padding: const EdgeInsets.all(AppDimes.small),
+                                child: CategoryItems(
+                                  categoryName: items.title,
+                                  imagePath: items.image,
+                                  linerColors: AppColors.catClasicColors,
+                                  onTap: () {},
+                                ),
                               );
-                              return null;
                             },
                           )),
                       AppDimes.large.hight,
+                      // amazing product section
                       SingleChildScrollView(
                         scrollDirection: Axis.horizontal,
                         physics: const BouncingScrollPhysics(),
@@ -72,16 +74,18 @@ class HomeScreen extends StatelessWidget {
                               child: VerticalTextBestSeller(),
                             ),
                             SizedBox(
-                              height: 300,
+                              height: 400,
                               child: ListView.builder(
                                 physics: const ClampingScrollPhysics(),
-                                itemCount: 8,
+                                itemCount:
+                                    state.homeModel.amazingProducts.length,
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (context, index) {
-                                  return const ProductItem(
-                                    price: 12000,
-                                    productName: 'ساعت نیوفیس',
+                                  var items =
+                                      state.homeModel.amazingProducts[index];
+                                  return ProductItem(
+                                    product: items,
                                   );
                                 },
                               ),

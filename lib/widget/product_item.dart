@@ -1,101 +1,125 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:watch_store/components/image_loading_servie.dart';
 import 'package:watch_store/components/text_style.dart';
-import 'package:watch_store/gen/assets.gen.dart';
+import 'package:watch_store/data/model/product.dart';
 import 'package:watch_store/res/color.dart';
 import 'package:watch_store/res/dimends.dart';
 import 'package:watch_store/res/extions.dart';
+import 'package:watch_store/utils/format_time.dart';
 
-/// this class for ProductItem
-class ProductItem extends StatelessWidget {
-  final String productName;
-  final int price;
-  final int oldPrice;
-  final int discount;
-  final int time;
-  const ProductItem({
+class ProductItem extends StatefulWidget {
+  ProductItem({
     super.key,
-    required this.productName,
-    required this.price,
-    this.oldPrice = 0,
-    this.discount = 0,
-    this.time = 0,
+    required this.product,
   });
+  ProductModel product;
+
+  @override
+  State<ProductItem> createState() => _ProductItemState();
+}
+
+class _ProductItemState extends State<ProductItem> {
+  Duration _duration = const Duration(seconds: 0);
+  late Timer _timer;
+  int insecond = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _timer = Timer(_duration, () {});
+    if (widget.product.special_expiration != "") {
+      DateTime now = DateTime.now();
+      DateTime expiration = DateTime.parse(widget.product.special_expiration);
+      _duration = now.difference(expiration).abs();
+      insecond = _duration.inSeconds;
+      startTimer();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(AppDimes.small),
       margin: const EdgeInsets.all(AppDimes.medium),
-      width: 200,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(AppDimes.small),
-        gradient: const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: AppColors.productBgGradiant,
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: AppDimes.small),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Assets.png.unnamed.image(),
-            Align(
+          borderRadius: BorderRadius.circular(AppDimes.medium),
+          gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: AppColors.productBgGradiant)),
+      width: 200,
+      child: Column(
+        children: [
+          ImageLoadingService(mainImage: widget.product.image),
+          Align(
               alignment: Alignment.centerRight,
-              child: Text(productName, style: AppTextStyles.productTitle),
-            ),
-            AppDimes.small.hight,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Visibility(
-                  visible: discount == 0 ? false : true,
-                  child: Container(
-                    width: 34,
-                    height: 18,
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(AppDimes.small),
-                    ),
-                    child: Text(
-                      '$discount%',
-                      style: AppTextStyles.mainbuttn,
-                    ),
-                  ),
-                ),
-                Text(price.sporterNumber)
-              ],
-            ),
-            Visibility(
-              visible: discount == 0 ? false : true,
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  oldPrice.sporterNumber,
-                  style: AppTextStyles.oldPriceStyle,
-                ),
-              ),
-            ),
-            AppDimes.small.hight,
-            Visibility(
-              visible: time == 0 ? false : true,
-              child: const Divider(
-                color: Colors.blue,
-                thickness: 1.4,
-              ),
-            ),
-            AppDimes.small.hight,
-            Visibility(
-              visible: time == 0 ? false : true,
               child: Text(
-                '$time',
-                style: AppTextStyles.prodTimerStyle,
+                widget.product.title,
+                style: AppTextStyles.productTitle,
+              )),
+          AppDimes.medium.hight,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    " ${widget.product.price.sporterNumber} تومان",
+                    style: AppTextStyles.title,
+                  ),
+                  Visibility(
+                      visible: widget.product.discount > 0 ? true : false,
+                      child: Text(
+                        widget.product.discount_price.sporterNumber,
+                        style: AppTextStyles.oldPriceStyle,
+                      )),
+                ],
               ),
-            )
-          ],
-        ),
+              Visibility(
+                visible: widget.product.discount > 0 ? true : false,
+                child: Container(
+                  padding: const EdgeInsets.all(AppDimes.small * .5),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(60),
+                      color: Colors.red),
+                  child: Text("${widget.product.discount} %"),
+                ),
+              )
+            ],
+          ),
+          AppDimes.large.hight,
+          Visibility(
+              visible: _duration.inSeconds > 0 ? true : false,
+              child: Container(
+                height: 2,
+                width: double.infinity,
+                color: Colors.blue,
+              )),
+          AppDimes.medium.hight,
+          Visibility(
+              visible: _duration.inSeconds > 0 ? true : false,
+              child: Text(
+                formatTime(insecond),
+                style: AppTextStyles.prodTimerStyle,
+              ))
+        ],
       ),
     );
+  }
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(oneSec, (timer) {
+      setState(() {
+        if (insecond == 0) {
+          debugPrint("product onTap limited");
+        } else {
+          insecond--;
+        }
+      });
+    });
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:watch_store/components/text_style.dart';
 import 'package:watch_store/res/dimends.dart';
 import 'package:watch_store/widget/custom_appbar.dart';
-import 'package:watch_store/widget/product_item.dart';
 
 class ProductListScreen extends StatelessWidget {
   const ProductListScreen({super.key});
@@ -67,7 +66,8 @@ class GradViwProduct extends StatelessWidget {
           childAspectRatio: 0.7,
         ),
         itemBuilder: (context, index) {
-          return const ProductItem(productName: 'ساعت هوشمند', price: 100000);
+          Container();
+          return null;
         },
       ),
     );

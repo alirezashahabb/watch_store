@@ -26,7 +26,7 @@ class ProductModel {
     return ProductModel(
       id: json['id'],
       title: json['title'],
-      price: json['id'],
+      price: json['price'],
       discount: json['discount'],
       special_expiration: json['special_expiration'],
       discount_price: json['discount_price'],

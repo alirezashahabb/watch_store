@@ -11,6 +11,7 @@ import 'package:watch_store/res/string.dart';
 import 'package:watch_store/screens/auth/cubit/auth_cubit.dart';
 import 'package:watch_store/screens/register/register_screen.dart';
 import 'package:watch_store/screens/root_screen.dart';
+import 'package:watch_store/utils/format_time.dart';
 import 'package:watch_store/widget/app_text_feild.dart';
 import 'package:watch_store/widget/main_bottom.dart';
 
@@ -59,15 +60,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     );
   }
 
-  String formatTimer(int sec) {
-    int minuet = sec ~/ 60;
-    int second = sec % 60;
-    String minStart = minuet.toString().padLeft(2, '0');
-    String secondStart = second.toString().padLeft(2, '0');
-
-    return '$minStart:$secondStart';
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -100,7 +92,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               MyAppTextFelid(
                 label: AppStrings.enterVerificationCode,
                 hint: AppStrings.hintVerificationCode,
-                caption: formatTimer(start),
+                caption: formatTime(start),
                 controller: controller,
                 type: TextInputType.number,
               ),
