@@ -5,6 +5,7 @@ import 'package:watch_store/res/color.dart';
 import 'package:watch_store/res/dimends.dart';
 import 'package:watch_store/res/extions.dart';
 import 'package:watch_store/screens/home/bloc/home_bloc.dart';
+import 'package:watch_store/screens/productlist/product_list_screen.dart';
 import 'package:watch_store/widget/app_slider.dart';
 import 'package:watch_store/widget/category_items.dart';
 import 'package:watch_store/widget/product_item.dart';
@@ -12,7 +13,7 @@ import 'package:watch_store/widget/search_bar.dart';
 import 'package:watch_store/widget/vertical_text_best_seller.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, th});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +58,17 @@ class HomeScreen extends StatelessWidget {
                                   categoryName: items.title,
                                   imagePath: items.image,
                                   linerColors: AppColors.catClasicColors,
-                                  onTap: () {},
+                                  onTap: () {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(
+                                      builder: (context) {
+                                        return ProductListScreen(
+                                          pram: state
+                                              .homeModel.categories[index].id,
+                                        );
+                                      },
+                                    ));
+                                  },
                                 ),
                               );
                             },

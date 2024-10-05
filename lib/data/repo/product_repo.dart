@@ -34,4 +34,4 @@ class ProductRepository implements IProductRepo {
   }
 }
 
-final product = ProductRepository(ProductRemoteDataSource(Dio()));
+final productRepo = ProductRepository(ProductRemoteDataSource(Dio()));

@@ -8,7 +8,7 @@ part 'productlist_state.dart';
 
 class ProductsListBloc extends Bloc<ProductsListEvent, ProductsListState> {
   final IProductRepo _iProductRepo;
-  ProductsListBloc(this._iProductRepo) : super(ProductsListErrorState()) {
+  ProductsListBloc(this._iProductRepo) : super(ProductsListLoadingState()) {
     on<ProductsListEvent>((event, emit) async {
       if (event is ProductListInitEvent) {
         try {
