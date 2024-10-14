@@ -18,7 +18,7 @@ class MainBottom extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           text,
-          style: AppTextStyles.mainbuttn,
+          style: AppTextStyles.mainbuttn.copyWith(fontSize: 14),
         ),
       ),
     );

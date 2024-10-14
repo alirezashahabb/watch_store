@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:watch_store/data/model/product.dart';
+import 'package:watch_store/data/model/product_detail.dart';
 import 'package:watch_store/data/src/product_data_source.dart';
 
 abstract class IProductRepo {
   Future<List<ProductModel>> getAllByBrandId(int id);
+  Future<ProductDetailsModel> getProductDetail(int id);
   Future<List<ProductModel>> getAllByCategory(int id);
   Future<List<ProductModel>> getAllBySorted(String routeParam);
   Future<List<ProductModel>> getAllProductsBySearch(String search);
@@ -31,6 +33,11 @@ class ProductRepository implements IProductRepo {
   @override
   Future<List<ProductModel>> getAllProductsBySearch(String search) {
     return _dataSource.getAllProductsBySearch(search);
+  }
+
+  @override
+  Future<ProductDetailsModel> getProductDetail(int id) {
+    return _dataSource.getProductDetail(id);
   }
 }
 

@@ -17,8 +17,8 @@ class RootScreen extends StatefulWidget {
 
 class _RootScreenState extends State<RootScreen> {
   @override
-  void initState() {
-    RepoTest().getData();
+  void initState() async {
+    var res = await RepoTest().getData();
   }
 
   int selectedIndex = 0;

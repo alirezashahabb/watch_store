@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:watch_store/data/repo/home_repo.dart';
-import 'package:watch_store/data/src/home_data_source.dart';
+import 'package:watch_store/data/repo/product_repo.dart';
+import 'package:watch_store/data/src/product_data_source.dart';
 
 class RepoTest {
-  final homerepo = HomeRepository(HomeRemoteDataSource(httpClient: Dio()));
+  final productRepo = ProductRepository(ProductRemoteDataSource(Dio()));
 
-  getData() async => await homerepo.getHome();
+  getData() async => await productRepo.getProductDetail(3);
 }
