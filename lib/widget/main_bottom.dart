@@ -16,9 +16,11 @@ class MainBottom extends StatelessWidget {
       child: ElevatedButton(
         style: AppButtonStyles.mainButtonStyle,
         onPressed: onPressed,
-        child: Text(
-          text,
-          style: AppTextStyles.mainbuttn.copyWith(fontSize: 14),
+        child: Center(
+          child: Text(
+            text,
+            style: AppTextStyles.mainbuttn.copyWith(fontSize: 14),
+          ),
         ),
       ),
     );

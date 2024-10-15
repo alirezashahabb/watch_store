@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:watch_store/components/them.dart';
 import 'package:watch_store/screens/auth/cubit/auth_cubit.dart';
-import 'package:watch_store/screens/home/prodoct_detail_screen.dart';
+import 'package:watch_store/screens/basket_screen.dart';
 import 'package:watch_store/utils/shared_pref_mangment.dart';
 
 void main() async {
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         theme: lightTheme(),
         // initialRoute: ScreenNames.root,
         // routes: routes,
-        home: const ProductDetailScreen(),
+        home: const BasketScreen(),
       ),
     );
   }
