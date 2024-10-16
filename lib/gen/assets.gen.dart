@@ -21,8 +21,12 @@ class $AssetsPngGen {
   /// File path: assets/png/unnamed.png
   AssetGenImage get unnamed => const AssetGenImage('assets/png/unnamed.png');
 
+  /// File path: assets/png/watch_profile.png
+  AssetGenImage get watchProfile =>
+      const AssetGenImage('assets/png/watch_profile.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [avatar, mainLogo, unnamed];
+  List<AssetGenImage> get values => [avatar, mainLogo, unnamed, watchProfile];
 }
 
 class $AssetsSvgGen {
