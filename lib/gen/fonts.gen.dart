@@ -10,6 +10,6 @@
 class FontFamily {
   FontFamily._();
 
-  /// Font family: Dandana
-  static const String dandana = 'Dandana';
+  /// Font family: dana
+  static const String dana = 'dana';
 }

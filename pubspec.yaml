@@ -80,7 +80,7 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Dandana
+    - family: dana
       fonts:
         - asset: assets/fonts/dana-300.ttf
           weight: 300
