@@ -20,7 +20,7 @@ class MainButton extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             text,
-            style: AppTextStyles.title,
+            style: AppTextStyles.mainbuttn,
           )),
     );
   }
