@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watch_store/component/themes.dart';
-import 'package:watch_store/screens/get_otp_screen.dart';
+import 'package:watch_store/screens/register_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: lightTheme(),
-      home: GetOptScreen(),
+      home: RegisterScreen(),
     );
   }
 }
