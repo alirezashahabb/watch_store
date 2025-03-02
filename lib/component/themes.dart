@@ -17,6 +17,8 @@ ThemeData lightTheme() {
       fillColor: WidgetStateColor.resolveWith((states) {
         if (states.contains(WidgetState.focused)) {
           return AppColors.focusedTextField;
+        } else if (states.contains(WidgetState.error)) {
+          return AppColors.error;
         } else {
           return AppColors.unFocusedTextField;
         }
@@ -29,6 +31,12 @@ ThemeData lightTheme() {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(AppDimens.medium),
         borderSide: const BorderSide(color: AppColors.primaryColor),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppDimens.medium),
+        borderSide: const BorderSide(
+          color: AppColors.error,
+        ),
       ),
     ),
   );
