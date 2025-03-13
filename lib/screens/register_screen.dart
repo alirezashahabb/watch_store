@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:watch_store/component/extention.dart';
+import 'package:watch_store/component/text_style.dart';
 import 'package:watch_store/res/dimens.dart';
 import 'package:watch_store/res/strings.dart';
+import 'package:watch_store/widgets/app_bar.dart';
 import 'package:watch_store/widgets/app_text_field.dart';
 import 'package:watch_store/widgets/main_button.dart';
 
@@ -17,6 +19,21 @@ class RegisterScreen extends StatelessWidget {
     TextEditingController loctionController = TextEditingController();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: CustomAppBar(
+          child: Container(
+        child: Row(
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.arrow_back),
+            ),
+            Text(
+              AppStrings.register,
+              style: AppTextStyles.title,
+            )
+          ],
+        ),
+      )),
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
