@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:watch_store/component/text_style.dart';
+import 'package:watch_store/gen/assets.gen.dart';
+import 'package:watch_store/res/colors.dart';
 import 'package:watch_store/screens/basket_screen.dart';
 import 'package:watch_store/screens/home_screen.dart';
 import 'package:watch_store/screens/profile_screen.dart';
@@ -21,8 +25,13 @@ class _RootScreenState extends State<RootScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        selectedLabelStyle: AppTextStyles.btmNavActive,
+        unselectedLabelStyle: AppTextStyles.btmNavInActive,
+        backgroundColor: AppColors.appbar,
         selectedFontSize: 12,
         unselectedFontSize: 12,
+        selectedItemColor: AppColors.btmNavActiveItem,
+        unselectedItemColor: AppColors.btmNavInActiveItem,
         currentIndex: _selctedIndex,
         onTap: (value) {
           setState(() {
@@ -32,14 +41,58 @@ class _RootScreenState extends State<RootScreen> {
         type: BottomNavigationBarType.fixed,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: SvgPicture.asset(
+              Assets.svg.home,
+              height: 22,
+              colorFilter: ColorFilter.mode(
+                AppColors.btmNavInActiveItem,
+                BlendMode.srcIn,
+              ),
+            ),
+            activeIcon: SvgPicture.asset(
+              Assets.svg.home,
+              height: 22,
+              colorFilter: ColorFilter.mode(
+                AppColors.btmNavActiveItem,
+                BlendMode.srcIn,
+              ),
+            ),
             label: 'خانه',
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart_rounded), label: 'سبد خرید'),
+              icon: SvgPicture.asset(
+                Assets.svg.cart,
+                height: 22,
+                colorFilter: ColorFilter.mode(
+                  AppColors.btmNavInActiveItem,
+                  BlendMode.srcIn,
+                ),
+              ),
+              activeIcon: SvgPicture.asset(
+                Assets.svg.cart,
+                height: 22,
+                colorFilter: ColorFilter.mode(
+                  AppColors.btmNavActiveItem,
+                  BlendMode.srcIn,
+                ),
+              ),
+              label: 'سبد خرید'),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.account_circle_outlined,
+            icon: SvgPicture.asset(
+              Assets.svg.user,
+              height: 22,
+              colorFilter: ColorFilter.mode(
+                AppColors.btmNavInActiveItem,
+                BlendMode.srcIn,
+              ),
+            ),
+            activeIcon: SvgPicture.asset(
+              Assets.svg.user,
+              height: 22,
+              colorFilter: ColorFilter.mode(
+                AppColors.btmNavActiveItem,
+                BlendMode.srcIn,
+              ),
             ),
             label: 'پروفایل',
           ),
