@@ -12,7 +12,6 @@ class SendOtpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController phoneController = TextEditingController();
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
