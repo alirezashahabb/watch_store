@@ -1,8 +1,53 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
+import 'package:watch_store/component/di.dart';
+import 'package:watch_store/constant/endpoinst.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
+  final Dio httpClient = locator.get();
   AuthCubit() : super(AuthInitial());
+  //Send Sms
+  sendSms(String mobile) async {
+    emit(AuthLoadingState());
+    try {
+      await httpClient.post(Endpoints.sendSms, data: {
+        'mobile': mobile,
+      }).then(
+        (value) {
+          print(value.toString());
+          if (value.statusCode == 201) {
+            emit(AuthSuccessState());
+          } else {}
+          emit(AuthErrorState());
+        },
+      );
+      emit(AuthSuccessState());
+    } catch (e) {
+      emit(AuthErrorState());
+    }
+  }
+
+  cheackSms(String mobile, String code) async {
+    emit(AuthLoadingState());
+    try {
+      await httpClient.post(Endpoints.checkSmsCode, data: {
+        'mobile': mobile,
+        'code': code,
+      }).then(
+        (value) {
+          print(value.toString());
+          if (value.statusCode == 201) {
+            emit(AuthVefiyState());
+          } else {}
+          emit(AuthErrorState());
+        },
+      );
+      emit(AuthSuccessState());
+    } catch (e) {
+      emit(AuthErrorState());
+    }
+  }
 }
