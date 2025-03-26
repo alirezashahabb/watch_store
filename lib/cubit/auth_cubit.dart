@@ -8,7 +8,9 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final Dio httpClient = locator.get();
-  AuthCubit() : super(AuthInitial());
+  AuthCubit() : super(AuthInitial()) {
+    emit(LoggedOutState());
+  }
   //Send Sms
   sendSms(String mobile) async {
     emit(AuthLoadingState());
@@ -19,12 +21,16 @@ class AuthCubit extends Cubit<AuthState> {
         (value) {
           print(value.toString());
           if (value.statusCode == 201) {
-            emit(AuthSuccessState());
-          } else {}
-          emit(AuthErrorState());
+            emit(
+              AuthSuccessState(
+                mobile: mobile,
+              ),
+            );
+          } else {
+            emit(AuthErrorState());
+          }
         },
       );
-      emit(AuthSuccessState());
     } catch (e) {
       emit(AuthErrorState());
     }
@@ -45,7 +51,6 @@ class AuthCubit extends Cubit<AuthState> {
           emit(AuthErrorState());
         },
       );
-      emit(AuthSuccessState());
     } catch (e) {
       emit(AuthErrorState());
     }

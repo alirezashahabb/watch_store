@@ -9,7 +9,13 @@ final class AuthLoadingState extends AuthState {}
 
 final class AuthErrorState extends AuthState {}
 
-final class AuthSuccessState extends AuthState {}
+final class AuthSuccessState extends AuthState {
+  final String mobile;
+
+  AuthSuccessState({
+    required this.mobile,
+  });
+}
 
 final class AuthVefiyState extends AuthState {}
 

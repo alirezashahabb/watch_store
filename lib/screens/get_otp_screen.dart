@@ -7,12 +7,14 @@ import 'package:watch_store/widgets/app_text_field.dart';
 import 'package:watch_store/widgets/main_button.dart';
 
 class GetOptScreen extends StatelessWidget {
-  const GetOptScreen({super.key});
+  final String mobile;
+
+  const GetOptScreen({super.key, required this.mobile});
 
   @override
   Widget build(BuildContext context) {
     TextEditingController phoneController = TextEditingController();
-    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: SafeArea(
         child: SizedBox(
@@ -25,7 +27,7 @@ class GetOptScreen extends StatelessWidget {
               AppDimens.medium.height,
               Text(
                 AppStrings.otpCodeSendFor
-                    .replaceAll(AppStrings.replace, '09916924158'),
+                    .replaceAll(AppStrings.replace, mobile),
               ),
               Text(
                 AppStrings.wrongNumberEditNumber,

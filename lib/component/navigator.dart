@@ -7,7 +7,10 @@ void goScreen({
   bool fullScreen = false,
 }) {
   if (closeScreen) {
-    Navigator.of(context, rootNavigator: fullScreen).pushReplacement(
+    Navigator.of(
+      context,
+      rootNavigator: fullScreen,
+    ).pushReplacement(
       MaterialPageRoute(
         builder: (context) => screen,
       ),
