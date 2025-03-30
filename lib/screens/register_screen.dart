@@ -37,44 +37,46 @@ class RegisterScreen extends StatelessWidget {
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              AppTextField(
-                lable: AppStrings.nameLastName,
-                controller: firstNameController,
-                hint: AppStrings.hintNameLastName,
-              ),
-              AppTextField(
-                lable: AppStrings.homeNumber,
-                controller: phoneController,
-                hint: AppStrings.hintHomeNumber,
-              ),
-              AppTextField(
-                lable: AppStrings.address,
-                controller: addressController,
-                hint: AppStrings.hintAddress,
-              ),
-              AppTextField(
-                lable: AppStrings.postalCode,
-                controller: postalController,
-                hint: AppStrings.hintPostalCode,
-              ),
-              AppTextField(
-                lable: AppStrings.location,
-                controller: loctionController,
-                hint: AppStrings.hintLocation,
-                icon: Icon(
-                  Icons.location_on,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                AppTextField(
+                  lable: AppStrings.nameLastName,
+                  controller: firstNameController,
+                  hint: AppStrings.hintNameLastName,
                 ),
-              ),
-              AppDimens.medium.height,
-              MainButton(
-                text: AppStrings.register,
-                onPressed: () {},
-              )
-            ],
+                AppTextField(
+                  lable: AppStrings.homeNumber,
+                  controller: phoneController,
+                  hint: AppStrings.hintHomeNumber,
+                ),
+                AppTextField(
+                  lable: AppStrings.address,
+                  controller: addressController,
+                  hint: AppStrings.hintAddress,
+                ),
+                AppTextField(
+                  lable: AppStrings.postalCode,
+                  controller: postalController,
+                  hint: AppStrings.hintPostalCode,
+                ),
+                AppTextField(
+                  lable: AppStrings.location,
+                  controller: loctionController,
+                  hint: AppStrings.hintLocation,
+                  icon: Icon(
+                    Icons.location_on,
+                  ),
+                ),
+                AppDimens.medium.height,
+                MainButton(
+                  text: AppStrings.register,
+                  onPressed: () {},
+                )
+              ],
+            ),
           ),
         ),
       ),

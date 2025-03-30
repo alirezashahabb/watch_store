@@ -6,10 +6,12 @@ import 'package:watch_store/component/themes.dart';
 import 'package:watch_store/cubit/auth_cubit.dart';
 import 'package:watch_store/screens/root_screen.dart';
 import 'package:watch_store/screens/send_otp_screen.dart';
+import 'package:watch_store/utils/share_prefance_manger.dart';
 
 void main() async {
   //SharePrefance
   WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferencesManager().init();
   // init get it
 
   await getItInit();
