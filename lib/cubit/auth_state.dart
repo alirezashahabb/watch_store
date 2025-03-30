@@ -17,7 +17,9 @@ final class AuthSuccessState extends AuthState {
   });
 }
 
-final class AuthVefiyState extends AuthState {}
+final class AuthVefiyIsRegistredState extends AuthState {}
+
+final class AuthVefiyNotRegistredState extends AuthState {}
 
 final class LoggedInState extends AuthState {}
 

@@ -14,7 +14,7 @@ void showCustomAlert(BuildContext context, String message,
       backgroundColor: alertType == AlertType.success
           ? AppColors.success
           : alertType == AlertType.warning
-              ? AppColors.error
+              ? Colors.orangeAccent
               : AppColors.error,
       behavior: SnackBarBehavior.floating,
       shape: RoundedRectangleBorder(

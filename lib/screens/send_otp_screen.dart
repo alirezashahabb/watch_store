@@ -31,13 +31,14 @@ class SendOtpScreen extends StatelessWidget {
                 lable: AppStrings.enterYourNumber,
                 controller: phoneController,
                 hint: AppStrings.hintPhoneNumber,
+                inputType: TextInputType.phone,
               ),
               BlocConsumer<AuthCubit, AuthState>(
                 listener: (context, state) {
                   if (state is AuthSuccessState) {
                     goScreen(
                       context: context,
-                      screen: GetOptScreen(
+                      screen: CheackSmsScreen(
                         mobile: state.mobile,
                       ),
                     );
