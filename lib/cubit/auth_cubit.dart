@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
 import 'package:watch_store/component/di.dart';
 import 'package:watch_store/constant/endpoinst.dart';
+import 'package:watch_store/constant/share_prefance_constant.dart';
 import 'package:watch_store/utils/share_prefance_manger.dart';
 
 part 'auth_state.dart';
@@ -47,10 +48,9 @@ class AuthCubit extends Cubit<AuthState> {
         (value) {
           print(value.toString());
           if (value.statusCode == 201) {
-            SharedPreferencesManager()
-                .saveString('token', value.data['data']['token']);
-            print(
-                'token is ==========>> ${SharedPreferencesManager().getString('token')}');
+            SharedPreferencesManager().saveString(
+                SharedPreferencesConstants.token, value.data['data']['token']);
+
             if (value.data['data']['is_registered']) {
               emit(AuthVefiyIsRegistredState());
             } else {

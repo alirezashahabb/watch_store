@@ -4,8 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:watch_store/component/di.dart';
 import 'package:watch_store/component/themes.dart';
 import 'package:watch_store/cubit/auth_cubit.dart';
-import 'package:watch_store/screens/root_screen.dart';
-import 'package:watch_store/screens/send_otp_screen.dart';
+import 'package:watch_store/screens/register_screen.dart';
 import 'package:watch_store/utils/share_prefance_manger.dart';
 
 void main() async {
@@ -45,17 +44,21 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: lightTheme(),
-      home: BlocBuilder<AuthCubit, AuthState>(
-        builder: (context, state) {
-          if (state is LoggedInState) {
-            return RootScreen();
-          } else if (state is LoggedOutState) {
-            return SendOtpScreen();
-          } else {
-            return SendOtpScreen();
-          }
-        },
-      ),
+      home: RegisterScreen(),
     );
   }
 }
+
+
+
+//  BlocBuilder<AuthCubit, AuthState>(
+//         builder: (context, state) {
+//           if (state is LoggedInState) {
+//             return RootScreen();
+//           } else if (state is LoggedOutState) {
+//             return SendOtpScreen();
+//           } else {
+//             return SendOtpScreen();
+//           }
+//         },
+//       ),
