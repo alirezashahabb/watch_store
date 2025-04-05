@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
+import 'package:meta/meta.dart';
 import 'package:watch_store/component/di.dart';
 import 'package:watch_store/constant/endpoinst.dart';
 import 'package:watch_store/constant/share_prefance_constant.dart';
@@ -11,55 +11,47 @@ import 'package:watch_store/utils/share_prefance_manger.dart';
 part 'register_state.dart';
 
 class RegisterCubit extends Cubit<RegisterState> {
-  final Dio httpClinet = locator.get();
-  RegisterCubit() : super(RegisterLoadingState());
+  RegisterCubit() : super(RegisterInitial());
+  final Dio _dio = locator.get();
 
-  picktheLotion(BuildContext context) async {
+  pickTheLocation({required context}) async {
     await showSimplePickerLocation(
-      context: context,
-      isDismissible: true,
-      title: 'انتخاب موقعیت مکانی',
-      textCancelPicker: 'لغو',
-      textConfirmPicker: 'تایید',
-      zoomOption: ZoomOption(initZoom: 8),
-      initCurrentUserPosition: UserTrackingOption.withoutUserPosition(),
-      radius: 8,
-    ).then(
-      (value) {
-        emit(
-          RegisterGeoPintState(
-            geoPoint: value,
-          ),
-        );
-      },
-    );
-    //User
+            isDismissible: true,
+            title: "انتخاب موقعیت مکانی",
+            textCancelPicker: "لغو",
+            textConfirmPicker: "انتخاب",
+            zoomOption: const ZoomOption(initZoom: 8),
+            // initCurrentUserPosition: UserTrackingOption.withoutUserPosition(),
+            initPosition: GeoPoint(latitude: 47.4358055, longitude: 8.4737324),
+            radius: 8.0,
+            context: context)
+        .then((value) => emit(LocationPickedState(location: value)));
   }
 
   register({required UserModel user}) async {
-    emit(RegisterLoadingState());
+    emit(LoadingState());
+    print(user.toMap());
     try {
       String? token = SharedPreferencesManager()
           .getString(SharedPreferencesConstants.token);
-      httpClinet.options.headers['Authorization'] = 'Bearer $token';
-      await httpClinet
+
+      _dio.options.headers["Authorization"] = "Bearer $token";
+      await _dio
           .post(
         Endpoints.register,
-        data: FormData.fromMap(
-          user.toMap(),
-        ),
+        data: FormData.fromMap(user.toMap()),
       )
-          .then(
-        (value) {
-          if (value.statusCode == 201) {
-            emit(RegisterSucessState());
-          } else {
-            emit(RegisterErrorState());
-          }
-        },
-      );
+          .then((value) {
+        print(value.statusCode);
+        if (value.statusCode == 201) {
+          emit(OkResponseState());
+        } else {
+          emit(ErrorState());
+        }
+      });
     } catch (e) {
-      emit(RegisterErrorState());
+      print(e.toString());
+      emit(ErrorState());
     }
   }
 }

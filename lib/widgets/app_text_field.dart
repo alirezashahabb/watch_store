@@ -28,7 +28,7 @@ class AppTextField extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(AppDimens.medium),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             width: size.width * .75,
