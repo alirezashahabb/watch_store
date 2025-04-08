@@ -1,6 +1,6 @@
 import 'package:watch_store/component/di.dart';
-import 'package:watch_store/data/model/data_source/product_data_source.dart';
-import 'package:watch_store/data/model/home_model.dart';
+import 'package:watch_store/data/data_source/product_data_source.dart';
+import 'package:watch_store/data/model/product_model.dart';
 
 abstract class IProductRepositroy {
   Future<List<ProductModel>> getAllByCategory(int id);

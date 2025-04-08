@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:watch_store/component/di.dart';
 import 'package:watch_store/constant/endpoinst.dart';
-import 'package:watch_store/data/model/home_model.dart';
+import 'package:watch_store/data/model/product_model.dart';
 import 'package:watch_store/utils/response_validator.dart';
 
 abstract class IProductDataSource {

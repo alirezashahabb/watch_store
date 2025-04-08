@@ -1,52 +1,45 @@
-class ProductModel {
-  int? id;
-  String? title;
-  int? price;
-  int? discount;
-  String? specialExpiration;
-  int? discountPrice;
-  int? productCount;
-  String? category;
-  String? brand;
-  String? image;
+import 'package:watch_store/data/model/banner_model.dart';
+import 'package:watch_store/data/model/category_model.dart';
+import 'package:watch_store/data/model/product_model.dart';
+import 'package:watch_store/data/model/slider_model.dart';
 
-  ProductModel(
-      {this.id,
-      this.title,
-      this.price,
-      this.discount,
-      this.specialExpiration,
-      this.discountPrice,
-      this.productCount,
-      this.category,
-      this.brand,
-      this.image});
+class Home {
+  List<SliderModel> sliders;
+  List<CategoryModel> categories;
+  List<ProductModel> amazingProducts;
+  List<ProductModel> mostSellerProducts;
+  List<ProductModel> newestProducts;
+  BannerModel banner;
 
-  ProductModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    price = json['price'];
-    discount = json['discount'];
-    specialExpiration = json['special_expiration'];
-    discountPrice = json['discount_price'];
-    productCount = json['product_count'];
-    category = json['category'];
-    brand = json['brand'];
-    image = json['image'];
-  }
+  Home({
+    required this.sliders,
+    required this.categories,
+    required this.amazingProducts,
+    required this.mostSellerProducts,
+    required this.newestProducts,
+    required this.banner,
+  });
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['id'] = id;
-    data['title'] = title;
-    data['price'] = price;
-    data['discount'] = discount;
-    data['special_expiration'] = specialExpiration;
-    data['discount_price'] = discountPrice;
-    data['product_count'] = productCount;
-    data['category'] = category;
-    data['brand'] = brand;
-    data['image'] = image;
-    return data;
+  factory Home.fromJson(Map<String, dynamic> json) {
+    return Home(
+      sliders: (json['sliders'] as List<dynamic>)
+          .map((e) => SliderModel.fromJson(e))
+          .toList(),
+      categories: (json['categories'] as List<dynamic>)
+          .map((e) => CategoryModel.fromJson(e))
+          .toList(),
+      amazingProducts: (json['amazing_products'] as List<dynamic>)
+          .map((e) => ProductModel.fromJson(e))
+          .toList(),
+      mostSellerProducts: (json['most_seller_products'] as List<dynamic>)
+          .map((e) => ProductModel.fromJson(e))
+          .toList(),
+      newestProducts: (json['newest_products'] as List<dynamic>)
+          .map((e) => ProductModel.fromJson(e))
+          .toList(),
+      banner: BannerModel.fromJson(
+        json['banner'],
+      ),
+    );
   }
 }
