@@ -3,7 +3,7 @@ import 'package:watch_store/data/model/category_model.dart';
 import 'package:watch_store/data/model/product_model.dart';
 import 'package:watch_store/data/model/slider_model.dart';
 
-class Home {
+class HomeModel {
   List<SliderModel> sliders;
   List<CategoryModel> categories;
   List<ProductModel> amazingProducts;
@@ -11,7 +11,7 @@ class Home {
   List<ProductModel> newestProducts;
   BannerModel banner;
 
-  Home({
+  HomeModel({
     required this.sliders,
     required this.categories,
     required this.amazingProducts,
@@ -20,8 +20,8 @@ class Home {
     required this.banner,
   });
 
-  factory Home.fromJson(Map<String, dynamic> json) {
-    return Home(
+  factory HomeModel.fromJson(Map<String, dynamic> json) {
+    return HomeModel(
       sliders: (json['sliders'] as List<dynamic>)
           .map((e) => SliderModel.fromJson(e))
           .toList(),
