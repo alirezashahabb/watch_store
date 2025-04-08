@@ -5,7 +5,7 @@ import 'package:watch_store/component/di.dart';
 import 'package:watch_store/component/themes.dart';
 import 'package:watch_store/cubit/auth_cubit.dart';
 import 'package:watch_store/register/cubit/register_cubit.dart';
-import 'package:watch_store/register/register_screen.dart';
+import 'package:watch_store/tesr_scree.dart';
 import 'package:watch_store/utils/share_prefance_manger.dart';
 
 void main() async {
@@ -37,18 +37,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: [
-          Locale('fa'), // Farsi
-        ],
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: lightTheme(),
-        home: RegisterScreen());
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('fa'), // Farsi
+      ],
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: lightTheme(),
+      home: TestScreen(),
+    );
   }
 }
 
