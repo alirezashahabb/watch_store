@@ -5,7 +5,8 @@ import 'package:watch_store/component/di.dart';
 import 'package:watch_store/component/themes.dart';
 import 'package:watch_store/cubit/auth_cubit.dart';
 import 'package:watch_store/register/cubit/register_cubit.dart';
-import 'package:watch_store/tesr_scree.dart';
+import 'package:watch_store/screens/home/bloc/home_bloc.dart';
+import 'package:watch_store/screens/home_screen.dart';
 import 'package:watch_store/utils/share_prefance_manger.dart';
 
 void main() async {
@@ -23,6 +24,9 @@ void main() async {
         ),
         BlocProvider(
           create: (context) => RegisterCubit(),
+        ),
+        BlocProvider(
+          create: (context) => HomeBloc(),
         ),
       ],
       child: MyApp(),
@@ -48,7 +52,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: lightTheme(),
-      home: TestScreen(),
+      home: HomeScreen(),
     );
   }
 }

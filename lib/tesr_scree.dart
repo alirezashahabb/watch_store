@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watch_store/constant/endpoinst.dart';
-import 'package:watch_store/data/model/repositroy/product_repostroy.dart';
+import 'package:watch_store/data/repositroy/product_repostroy.dart';
 
 class TestScreen extends StatelessWidget {
   const TestScreen({super.key});
