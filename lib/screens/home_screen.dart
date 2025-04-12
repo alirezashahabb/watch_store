@@ -37,7 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     onTap: () {},
                   ),
                   AppDimens.large.height,
-                  HomeSlider()
+                  HomeSlider(
+                    sliderModel: state.home,
+                  )
                 ],
               );
             } else if (state is HomeErrorState) {

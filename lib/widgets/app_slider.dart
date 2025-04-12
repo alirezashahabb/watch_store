@@ -1,11 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:watch_store/data/model/home_model.dart';
 import 'package:watch_store/res/colors.dart';
+import 'package:watch_store/utils/image_loading_service.dart';
 
 class HomeSlider extends StatefulWidget {
+  final HomeModel sliderModel;
   const HomeSlider({
     super.key,
+    required this.sliderModel,
   });
 
   @override
@@ -33,24 +37,18 @@ class _HomeSliderState extends State<HomeSlider> {
                 viewportFraction: 1,
                 enlargeCenterPage: true,
               ),
-              items: [
-                Container(
-                  color: Colors.red,
-                  margin: EdgeInsets.all(12),
-                ),
-                Container(
-                  color: Colors.amber,
-                ),
-                Container(
-                  color: Colors.blueAccent,
-                ),
-              ],
+              items: widget.sliderModel.sliders.map((i) {
+                return ImageLoadingService(
+                  mainImage: i.image,
+                  radius: 12,
+                );
+              }).toList(),
             ),
             Positioned(
               bottom: 12,
               child: AnimatedSmoothIndicator(
                 activeIndex: selectedItem,
-                count: 3,
+                count: widget.sliderModel.sliders.length,
                 effect: ExpandingDotsEffect(
                   dotWidth: 7,
                   dotHeight: 7,
