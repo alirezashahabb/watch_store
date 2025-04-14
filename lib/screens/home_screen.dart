@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:watch_store/component/extention.dart';
-import 'package:watch_store/component/text_style.dart';
-import 'package:watch_store/data/model/category_model.dart';
 import 'package:watch_store/res/dimens.dart';
 import 'package:watch_store/screens/home/bloc/home_bloc.dart';
-import 'package:watch_store/utils/image_loading_service.dart';
 import 'package:watch_store/widgets/app_slider.dart';
+import 'package:watch_store/widgets/category.dart';
 import 'package:watch_store/widgets/search_btn.dart';
+import 'package:watch_store/widgets/vertical_text.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,7 +24,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Size mediaQuery = MediaQuery.of(context).size;
     return Scaffold(body: SafeArea(
       child: SingleChildScrollView(
         child: BlocBuilder<HomeBloc, HomeState>(
@@ -35,29 +33,63 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: CircularProgressIndicator(),
               );
             } else if (state is HomeResponseState) {
-              return Column(
-                children: [
-                  SearchBtn(
-                    onTap: () {},
-                  ),
-                  AppDimens.large.height,
-                  HomeSlider(
-                    sliderModel: state.home,
-                  ),
-                  AppDimens.large.height,
-                  SizedBox(
-                    height: 90,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: state.home.categories.length,
-                      itemBuilder: (context, index) {
-                        return CategorySection(
-                          categoryModel: state.home.categories[index],
-                        );
-                      },
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SearchBtn(
+                      onTap: () {},
                     ),
-                  )
-                ],
+                    AppDimens.large.height,
+                    HomeSlider(
+                      sliderModel: state.home,
+                    ),
+                    // category
+                    AppDimens.large.height,
+                    SizedBox(
+                      height: 90,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state.home.categories.length,
+                        itemBuilder: (context, index) {
+                          return CategorySection(
+                            categoryModel: state.home.categories[index],
+                          );
+                        },
+                      ),
+                    ),
+                    // Product
+                    AppDimens.large.height,
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          VerticalText(),
+                          SizedBox(
+                            height: 300,
+                            child: ListView.builder(
+                              physics: ClampingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 8,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  margin: EdgeInsets.only(
+                                    left: AppDimens.large,
+                                    right: AppDimens.medium,
+                                  ),
+                                  height: 298,
+                                  width: 200,
+                                  color: Colors.black,
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    AppDimens.large.height,
+                  ],
+                ),
               );
             } else if (state is HomeErrorState) {
               return Text('خطا');
@@ -68,62 +100,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     ));
-  }
-}
-
-class CategorySection extends StatelessWidget {
-  final CategoryModel categoryModel;
-  const CategorySection({
-    super.key,
-    required this.categoryModel,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      spacing: 6,
-      children: [
-        Container(
-            margin: EdgeInsets.only(
-              left: AppDimens.large,
-              right: AppDimens.medium,
-            ),
-            height: 61,
-            width: 61,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                AppDimens.large,
-              ),
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color.fromARGB(
-                    255,
-                    255,
-                    166,
-                    14,
-                  ),
-                  Color.fromARGB(
-                    255,
-                    255,
-                    227,
-                    200,
-                  ),
-                ],
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(4.0),
-              child: ImageLoadingService(
-                mainImage: categoryModel.image,
-              ),
-            )),
-        Text(
-          categoryModel.title,
-          style: AppTextStyles.title,
-        )
-      ],
-    );
   }
 }
