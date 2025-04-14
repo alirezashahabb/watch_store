@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:watch_store/component/extention.dart';
 import 'package:watch_store/component/text_style.dart';
 import 'package:watch_store/gen/assets.gen.dart';
@@ -83,7 +84,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                     left: AppDimens.large,
                                     right: AppDimens.medium,
                                   ),
-                                  height: 298,
                                   width: 200,
                                   decoration: BoxDecoration(
                                     borderRadius:
@@ -133,28 +133,27 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 CrossAxisAlignment.end,
                                             children: [
                                               Text(
-                                                '500000 تومان',
+                                                '500000 تومان'.seRagham(),
                                                 style:
                                                     AppTextStyles.productTitle,
                                               ),
                                               Text(
-                                                '250000',
+                                                '250000'.seRagham(),
                                                 style:
                                                     AppTextStyles.oldPriceStyle,
                                               ),
-                                              Container(
-                                                width: double.infinity,
-                                                height: 2,
-                                                color: AppColors
-                                                    .focusedBorderColor,
-                                              ),
-                                              Text(
-                                                '9:22:10',
-                                                style: AppTextStyles.title,
-                                              )
                                             ],
                                           )
                                         ],
+                                      ),
+                                      Container(
+                                        width: double.infinity,
+                                        height: 2,
+                                        color: AppColors.focusedBorderColor,
+                                      ),
+                                      Text(
+                                        '9:22:10',
+                                        style: AppTextStyles.prodTimerStyle,
                                       )
                                     ],
                                   ),

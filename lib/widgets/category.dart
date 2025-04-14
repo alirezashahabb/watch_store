@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:watch_store/component/text_style.dart';
 import 'package:watch_store/data/model/category_model.dart';
+import 'package:watch_store/res/colors.dart';
 import 'package:watch_store/res/dimens.dart';
 import 'package:watch_store/utils/image_loading_service.dart';
 
@@ -30,20 +31,7 @@ class CategorySection extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
-                  Color.fromARGB(
-                    255,
-                    255,
-                    166,
-                    14,
-                  ),
-                  Color.fromARGB(
-                    255,
-                    255,
-                    227,
-                    200,
-                  ),
-                ],
+                colors: AppColors.catClasicColors,
               ),
             ),
             child: Padding(
