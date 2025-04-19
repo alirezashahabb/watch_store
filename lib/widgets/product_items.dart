@@ -50,91 +50,95 @@ class _ProductItemsState extends State<ProductItems> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(
-        AppDimens.small,
-      ),
-      margin: EdgeInsets.only(
-        left: AppDimens.large,
-        right: AppDimens.medium,
-      ),
-      width: 200,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadiusDirectional.circular(AppDimens.medium),
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: AppColors.productBgGradiant,
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        padding: EdgeInsets.all(
+          AppDimens.small,
         ),
-      ),
-      child: Column(
-        spacing: AppDimens.small,
-        children: [
-          SizedBox(
-              height: 140, child: ImageLoadingService(mainImage: widget.image)),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Text(
-              widget.productName,
-              style: AppTextStyles.productTitle,
-            ),
+        margin: EdgeInsets.only(
+          left: AppDimens.large,
+          right: AppDimens.medium,
+        ),
+        width: 200,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadiusDirectional.circular(AppDimens.medium),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: AppColors.productBgGradiant,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Visibility(
-                visible: widget.discount > 0 ? true : false,
-                child: Container(
-                  alignment: Alignment.center,
-                  width: 50,
-                  height: 25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      AppDimens.medium,
+        ),
+        child: Column(
+          spacing: AppDimens.small,
+          children: [
+            SizedBox(
+                height: 140,
+                child: ImageLoadingService(mainImage: widget.image)),
+            Align(
+              alignment: Alignment.centerRight,
+              child: Text(
+                widget.productName,
+                style: AppTextStyles.productTitle,
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Visibility(
+                  visible: widget.discount > 0 ? true : false,
+                  child: Container(
+                    alignment: Alignment.center,
+                    width: 50,
+                    height: 25,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        AppDimens.medium,
+                      ),
+                      color: AppColors.error,
                     ),
-                    color: AppColors.error,
-                  ),
-                  child: Text(
-                    '${widget.discount}%',
-                    style: AppTextStyles.mainbuttn,
+                    child: Text(
+                      '${widget.discount}%',
+                      style: AppTextStyles.mainbuttn,
+                    ),
                   ),
                 ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    '${widget.price}تومان'.seRagham(),
-                    style: AppTextStyles.title,
-                  ),
-                  Visibility(
-                    visible: widget.discount > 0 ? true : false,
-                    child: Text(
-                      '${widget.oldPrice}'.seRagham(),
-                      style: AppTextStyles.oldPriceStyle,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      '${widget.price}تومان'.seRagham(),
+                      style: AppTextStyles.title,
                     ),
-                  ),
-                ],
-              )
-            ],
-          ),
-          Visibility(
-            visible: _duration.inSeconds > 0 ? true : false,
-            child: Container(
-              width: double.infinity,
-              height: 2,
-              color: AppColors.focusedBorderColor,
+                    Visibility(
+                      visible: widget.discount > 0 ? true : false,
+                      child: Text(
+                        '${widget.oldPrice}'.seRagham(),
+                        style: AppTextStyles.oldPriceStyle,
+                      ),
+                    ),
+                  ],
+                )
+              ],
             ),
-          ),
-          Visibility(
-            visible: _duration.inSeconds > 0 ? true : false,
-            child: Text(
-              formatTime(insecond),
-              style: AppTextStyles.prodTimerStyle,
+            Visibility(
+              visible: _duration.inSeconds > 0 ? true : false,
+              child: Container(
+                width: double.infinity,
+                height: 2,
+                color: AppColors.focusedBorderColor,
+              ),
             ),
-          )
-        ],
+            Visibility(
+              visible: _duration.inSeconds > 0 ? true : false,
+              child: Text(
+                formatTime(insecond),
+                style: AppTextStyles.prodTimerStyle,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -5,6 +5,7 @@ import 'package:watch_store/constant/endpoinst.dart';
 import 'package:watch_store/data/data_source/home_data_source.dart';
 import 'package:watch_store/data/data_source/product_data_source.dart';
 import 'package:watch_store/data/repositroy/home_repositrot.dart';
+import 'package:watch_store/data/repositroy/product_repostroy.dart';
 
 var locator = GetIt.instance;
 
@@ -32,5 +33,8 @@ Future<void> getItInit() async {
   //repositroy
   locator.registerFactory<IHomeRepo>(
     () => HomeRepository(),
+  );
+  locator.registerFactory<IProductRepositroy>(
+    () => ProductRepostroy(),
   );
 }

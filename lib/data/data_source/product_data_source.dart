@@ -22,7 +22,7 @@ class ProductDataSource extends IProductDataSource {
 
     HTTPResponseValidator.isValidStatusCode(response.statusCode!);
 
-    for (var element in response.data['all_products']['data'] as List) {
+    for (var element in response.data['products_by_brands']['data'] as List) {
       products.add(ProductModel.fromJson(element));
     }
 
@@ -38,7 +38,7 @@ class ProductDataSource extends IProductDataSource {
 
     HTTPResponseValidator.isValidStatusCode(response.statusCode!);
 
-    for (var element in response.data['all_products']['data'] as List) {
+    for (var element in response.data['products_by_category']['data'] as List) {
       products.add(ProductModel.fromJson(element));
     }
 

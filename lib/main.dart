@@ -6,6 +6,7 @@ import 'package:watch_store/component/themes.dart';
 import 'package:watch_store/cubit/auth_cubit.dart';
 import 'package:watch_store/register/cubit/register_cubit.dart';
 import 'package:watch_store/screens/home/bloc/home_bloc.dart';
+import 'package:watch_store/screens/productlist/bloc/prodoct_list_bloc.dart';
 import 'package:watch_store/screens/root_screen.dart';
 import 'package:watch_store/utils/share_prefance_manger.dart';
 
@@ -27,6 +28,9 @@ void main() async {
         ),
         BlocProvider(
           create: (context) => HomeBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ProdoctListBloc(),
         ),
       ],
       child: MyApp(),
