@@ -20,7 +20,7 @@ class CategorySection extends StatelessWidget {
       onTap: () {
         goScreen(
           context: context,
-          screen: ProDuctListScreen(id: categoryModel.id),
+          screen: ProductListScreen(id: categoryModel.id),
         );
       },
       child: Column(

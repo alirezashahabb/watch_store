@@ -9,18 +9,18 @@ import 'package:watch_store/widgets/app_bar.dart';
 import 'package:watch_store/widgets/product_items.dart';
 import 'package:watch_store/widgets/tag_list_screen.dart';
 
-class ProDuctListScreen extends StatefulWidget {
+class ProductListScreen extends StatefulWidget {
   final int id;
-  const ProDuctListScreen({
+  const ProductListScreen({
     super.key,
     required this.id,
   });
 
   @override
-  State<ProDuctListScreen> createState() => _ProDuctListScreenState();
+  State<ProductListScreen> createState() => _ProductListScreenState();
 }
 
-class _ProDuctListScreenState extends State<ProDuctListScreen> {
+class _ProductListScreenState extends State<ProductListScreen> {
   @override
   void initState() {
     BlocProvider.of<ProdoctListBloc>(context)
