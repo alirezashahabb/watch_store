@@ -5,8 +5,10 @@ import 'package:watch_store/gen/assets.gen.dart';
 import 'package:watch_store/res/dimens.dart';
 
 class VerticalText extends StatelessWidget {
+  final String title;
   const VerticalText({
     super.key,
+    required this.title,
   });
 
   @override
@@ -31,7 +33,7 @@ class VerticalText extends StatelessWidget {
               ],
             ),
             Text(
-              'پیشنهادات ویژه',
+              title,
               style: AppTextStyles.amazingStyle,
             ),
           ],

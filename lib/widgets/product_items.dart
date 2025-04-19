@@ -1,25 +1,52 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
 import 'package:watch_store/component/text_style.dart';
-import 'package:watch_store/gen/assets.gen.dart';
 import 'package:watch_store/res/colors.dart';
 import 'package:watch_store/res/dimens.dart';
+import 'package:watch_store/utils/format_time.dart';
+import 'package:watch_store/utils/image_loading_service.dart';
 
-class ProductItems extends StatelessWidget {
+class ProductItems extends StatefulWidget {
   final String productName;
   final oldPrice;
   final String price;
-  final date;
+  final specialExpiration;
   final discount;
+  final String image;
 
   const ProductItems({
     super.key,
     required this.productName,
     this.oldPrice = 0,
     required this.price,
-    this.date = 0,
+    this.specialExpiration = '',
     this.discount = 0,
+    required this.image,
   });
+
+  @override
+  State<ProductItems> createState() => _ProductItemsState();
+}
+
+class _ProductItemsState extends State<ProductItems> {
+  Duration _duration = Duration(seconds: 0);
+  late Timer _timer;
+  int insecond = 0;
+  @override
+  void initState() {
+    _timer = Timer(_duration, () {});
+    if (widget.specialExpiration != "") {
+      DateTime now = DateTime.now();
+      DateTime expiration = DateTime.parse(widget.specialExpiration);
+      _duration = now.difference(expiration).abs();
+      insecond = _duration.inSeconds;
+      startTimer();
+    }
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,11 +70,12 @@ class ProductItems extends StatelessWidget {
       child: Column(
         spacing: AppDimens.small,
         children: [
-          Assets.png.unnamed.image(),
+          SizedBox(
+              height: 140, child: ImageLoadingService(mainImage: widget.image)),
           Align(
             alignment: Alignment.centerRight,
             child: Text(
-              productName,
+              widget.productName,
               style: AppTextStyles.productTitle,
             ),
           ),
@@ -56,7 +84,7 @@ class ProductItems extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Visibility(
-                visible: discount > 0 ? true : false,
+                visible: widget.discount > 0 ? true : false,
                 child: Container(
                   alignment: Alignment.center,
                   width: 50,
@@ -68,7 +96,7 @@ class ProductItems extends StatelessWidget {
                     color: AppColors.error,
                   ),
                   child: Text(
-                    discount,
+                    '${widget.discount}%',
                     style: AppTextStyles.mainbuttn,
                   ),
                 ),
@@ -77,13 +105,13 @@ class ProductItems extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    '$price تومان'.seRagham(),
+                    '${widget.price}تومان'.seRagham(),
                     style: AppTextStyles.title,
                   ),
                   Visibility(
-                    visible: discount > 0 ? true : false,
+                    visible: widget.discount > 0 ? true : false,
                     child: Text(
-                      oldPrice.seRagham(),
+                      '${widget.oldPrice}'.seRagham(),
                       style: AppTextStyles.oldPriceStyle,
                     ),
                   ),
@@ -92,7 +120,7 @@ class ProductItems extends StatelessWidget {
             ],
           ),
           Visibility(
-            visible: date > 0 ? true : false,
+            visible: _duration.inSeconds > 0 ? true : false,
             child: Container(
               width: double.infinity,
               height: 2,
@@ -100,14 +128,27 @@ class ProductItems extends StatelessWidget {
             ),
           ),
           Visibility(
-            visible: date > 0 ? true : false,
+            visible: _duration.inSeconds > 0 ? true : false,
             child: Text(
-              date,
+              formatTime(insecond),
               style: AppTextStyles.prodTimerStyle,
             ),
           )
         ],
       ),
     );
+  }
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(oneSec, (timer) {
+      setState(() {
+        if (insecond == 0) {
+          debugPrint("product onTap limited");
+        } else {
+          insecond--;
+        }
+      });
+    });
   }
 }

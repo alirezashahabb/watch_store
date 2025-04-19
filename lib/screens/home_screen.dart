@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:lottie/lottie.dart';
 import 'package:watch_store/component/extention.dart';
-import 'package:watch_store/component/text_style.dart';
 import 'package:watch_store/res/dimens.dart';
 import 'package:watch_store/screens/home/bloc/home_bloc.dart';
+import 'package:watch_store/utils/image_loading_service.dart';
 import 'package:watch_store/widgets/app_slider.dart';
 import 'package:watch_store/widgets/category.dart';
+import 'package:watch_store/widgets/error_state.dart';
 import 'package:watch_store/widgets/product_items.dart';
 import 'package:watch_store/widgets/search_btn.dart';
 import 'package:watch_store/widgets/vertical_text.dart';
@@ -66,7 +66,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          VerticalText(),
+                          VerticalText(
+                            title: 'پیشنهادات ویژه',
+                          ),
                           SizedBox(
                             height: 300,
                             child: ListView.builder(
@@ -81,12 +83,55 @@ class _HomeScreenState extends State<HomeScreen> {
                                   productName: product.title!,
                                   discount: product.discount,
                                   oldPrice: product.discountPrice,
-                                  date: '10:00:12',
+                                  specialExpiration: product.specialExpiration,
+                                  image: product.image!,
                                 );
                               },
                             ),
                           ),
                         ],
+                      ),
+                    ),
+                    AppDimens.large.height,
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          VerticalText(
+                            title: 'پر فروش ترین ها',
+                          ),
+                          SizedBox(
+                            height: 300,
+                            child: ListView.builder(
+                              physics: ClampingScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: state.home.mostSellerProducts.length,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                var product =
+                                    state.home.mostSellerProducts[index];
+                                return ProductItems(
+                                  price: '${product.price}',
+                                  productName: product.title!,
+                                  discount: product.discount,
+                                  oldPrice: product.discountPrice,
+                                  // specialExpiration: product.specialExpiration,
+                                  image: product.image!,
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: AppDimens.large),
+                      width: double.infinity,
+                      child: ImageLoadingService(
+                        mainImage:
+                            'https://watchstore.sasansafari.com/public/images/sliders/big/1652882081.jpg',
+                        radius: AppDimens.medium,
                       ),
                     ),
                     AppDimens.large.height,
@@ -106,42 +151,5 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     ));
-  }
-}
-
-class ErrorScreen extends StatelessWidget {
-  final void Function() onTap;
-  const ErrorScreen({
-    super.key,
-    required this.onTap,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Center(
-        child: Column(mainAxisSize: MainAxisSize.max, spacing: 12, children: [
-          AppDimens.large.height,
-          LottieBuilder.asset(
-            'assets/png/animation.json',
-            animate: true,
-            repeat: true,
-            height: 200,
-          ),
-          Text(
-            'ای بابا ! در حال  حاضر مشکلی رخ داده',
-            style: AppTextStyles.amazingStyle,
-          ),
-          ElevatedButton(
-            onPressed: onTap,
-            child: Text(
-              'تلاش مجدد',
-              style: AppTextStyles.mainbuttn,
-            ),
-          )
-        ]),
-      ),
-    );
   }
 }
