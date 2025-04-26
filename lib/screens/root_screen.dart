@@ -4,7 +4,7 @@ import 'package:watch_store/component/text_style.dart';
 import 'package:watch_store/gen/assets.gen.dart';
 import 'package:watch_store/res/colors.dart';
 import 'package:watch_store/screens/basket_screen.dart';
-import 'package:watch_store/screens/home_screen.dart';
+import 'package:watch_store/screens/home/home_screen.dart';
 import 'package:watch_store/screens/profile_screen.dart';
 
 class RootScreen extends StatefulWidget {

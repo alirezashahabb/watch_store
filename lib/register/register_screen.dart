@@ -10,7 +10,7 @@ import 'package:watch_store/component/snack_bar.dart';
 import 'package:watch_store/data/model/user.dart';
 import 'package:watch_store/res/dimens.dart';
 import 'package:watch_store/res/strings.dart';
-import 'package:watch_store/screens/home_screen.dart';
+import 'package:watch_store/screens/home/home_screen.dart';
 import 'package:watch_store/utils/image_handler.dart';
 import 'package:watch_store/widgets/app_text_field.dart';
 import 'package:watch_store/widgets/avatar.dart';

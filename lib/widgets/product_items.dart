@@ -2,9 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:persian_number_utility/persian_number_utility.dart';
+import 'package:watch_store/component/navigator.dart';
 import 'package:watch_store/component/text_style.dart';
 import 'package:watch_store/res/colors.dart';
 import 'package:watch_store/res/dimens.dart';
+import 'package:watch_store/screens/prodoct/prodoct_detail_screen.dart';
 import 'package:watch_store/utils/format_time.dart';
 import 'package:watch_store/utils/image_loading_service.dart';
 
@@ -15,6 +17,7 @@ class ProductItems extends StatefulWidget {
   final specialExpiration;
   final discount;
   final String image;
+  final int id;
 
   const ProductItems({
     super.key,
@@ -24,6 +27,7 @@ class ProductItems extends StatefulWidget {
     this.specialExpiration = '',
     this.discount = 0,
     required this.image,
+    required this.id,
   });
 
   @override
@@ -32,11 +36,11 @@ class ProductItems extends StatefulWidget {
 
 class _ProductItemsState extends State<ProductItems> {
   Duration _duration = Duration(seconds: 0);
-  late Timer _timer;
+  late Timer timer;
   int insecond = 0;
   @override
   void initState() {
-    _timer = Timer(_duration, () {});
+    timer = Timer(_duration, () {});
     if (widget.specialExpiration != "") {
       DateTime now = DateTime.now();
       DateTime expiration = DateTime.parse(widget.specialExpiration);
@@ -51,7 +55,14 @@ class _ProductItemsState extends State<ProductItems> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        goScreen(
+          context: context,
+          screen: ProdoctDetailScreen(
+            id: widget.id,
+          ),
+        );
+      },
       child: Container(
         padding: EdgeInsets.all(
           AppDimens.small,
@@ -145,7 +156,7 @@ class _ProductItemsState extends State<ProductItems> {
 
   void startTimer() {
     const oneSec = Duration(seconds: 1);
-    _timer = Timer.periodic(oneSec, (timer) {
+    timer = Timer.periodic(oneSec, (timer) {
       setState(() {
         if (insecond == 0) {
           debugPrint("product onTap limited");

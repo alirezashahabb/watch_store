@@ -76,6 +76,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                         oldPrice: items.discountPrice,
                         specialExpiration: items.specialExpiration,
                         image: items.image!,
+                        id: items.id!,
                       );
                     },
                   ),

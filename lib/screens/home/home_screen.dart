@@ -85,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   oldPrice: product.discountPrice,
                                   specialExpiration: product.specialExpiration,
                                   image: product.image!,
+                                  id: product.id!,
                                 );
                               },
                             ),
@@ -117,6 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   oldPrice: product.discountPrice,
                                   // specialExpiration: product.specialExpiration,
                                   image: product.image!,
+                                  id: product.id!,
                                 );
                               },
                             ),
