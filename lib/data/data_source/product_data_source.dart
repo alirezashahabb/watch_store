@@ -1,10 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:watch_store/component/di.dart';
 import 'package:watch_store/constant/endpoinst.dart';
+import 'package:watch_store/data/model/prodoct_detail_model.dart';
 import 'package:watch_store/data/model/product_model.dart';
 import 'package:watch_store/utils/response_validator.dart';
 
 abstract class IProductDataSource {
+  Future<ProductDetailes> getProductDetailes(int id);
   Future<List<ProductModel>> getAllByCategory(int id);
   Future<List<ProductModel>> getAllByBrand(int id);
   Future<List<ProductModel>> getSoetrd(String routParam);
@@ -74,5 +76,13 @@ class ProductDataSource extends IProductDataSource {
     }
 
     return products;
+  }
+
+  @override
+  Future<ProductDetailes> getProductDetailes(int id) async {
+    final response =
+        await httpClinet.get(Endpoints.productDetails + id.toString());
+    HTTPResponseValidator.isValidStatusCode(response.statusCode ?? 0);
+    return ProductDetailes.fromJson(response.data['data'][0]);
   }
 }
