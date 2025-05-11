@@ -42,7 +42,9 @@ class _ProdoctDetailScreenState extends State<ProdoctDetailScreen> {
                 child: Row(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
                   icon: SvgPicture.asset(Assets.svg.close),
                 ),
                 Expanded(
